@@ -164,6 +164,11 @@ nav.open ~ .overlay {
     margin-top: 20px;
 }
 
+.navigation-home
+{
+    z-index: 100;
+}
+
 
 
 

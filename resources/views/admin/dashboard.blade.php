@@ -66,7 +66,7 @@
 
 {{--            <button type="button"> {{ Auth::user()->name }}</button>--}}
 
-<nav>
+<nav class="bg-light position-sticky navigation-home border">
 
     <div class="container-fluid ">
         <div class="row justify-content-end">
