@@ -42,7 +42,10 @@ Route::get('deletelp/{car_id}','App\Http\Controllers\HomeController@deletelp');
 Route::get('monitor','App\Http\Controllers\MonitorController@index');
 Route::get('report','App\Http\Controllers\ReportController@index');
 Route::post('dateprocess','App\Http\Controllers\ReportController@dateprocess');
-Route::post('printpdf','App\Http\Controllers\ReportController@printpdf');
+Route::post('printpdf/{report_records}','App\Http\Controllers\ReportController@printpdf');
+Route::get('announcement-admin','App\Http\Controllers\AnnouncementController@index');
+
+
 
 
 

@@ -4,8 +4,84 @@
 
 
 
-    <div class=" container  monitor-table table-responsive-md border p-5" id="refresh">
-        <h3 class="pb-3"> Vehicle monitoring  <span class="text-primary pl-2"> {{date('d/m/Y')}}</span></h3>
+    <div class=" container  monitor-table table-responsive-md   p-5" id="refresh">
+        <div class="card">
+            <h5 class="card-header">Vehicle monitoring  <span class="badge badge-primary badge-pill">{{date('d/m/Y')}}</span></h5>
+            <div class="card-body">
+
+
+                <table id="data-table" class="table table-striped border table-responsive-xl" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>License Plate</th>
+                        <th>Status</th>
+                        <th>Time</th>
+                        <th>Date</th>
+                        <th>Car way</th>
+
+                    </tr>
+
+                    </thead>
+                    <tbody>
+
+                    @if(empty($bg_records))
+                        <tbody>
+                        <td></td>
+                        <td></td>
+                        <td class="text-danger text-center"> No records </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        </tbody>
+
+                    @else
+                        <tbody>
+                        @foreach($bg_records as $bg_record)
+
+                            @if($bg_record -> status == 1)
+
+                                @if($bg_record -> carway ==0)
+                                    <tr id="">
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $bg_record -> lp}}</td>
+                                        <td> PASS</td>
+                                        <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('h:i:s')}}</td>
+                                        <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('d-m-Y')}}</td>
+                                        <td style="color: forestgreen">IN</td>
+                                    </tr>
+                                @else
+                                    <tr id="">
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $bg_record -> lp}}</td>
+                                        <td> PASS</td>
+                                        <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('h:i:s')}}</td>
+                                        <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('d-m-Y')}}</td>
+                                        <td style="color: red">OUT</td>
+                                    </tr>
+                                @endif
+
+
+                            @else
+                                <tr id="">
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $bg_record -> lp}}</td>
+                                    <td> FAILED</td>
+
+                                    <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('h:i:s')}}</td>
+                                    <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('d-m-Y')}}</td>
+                                    <td style="color: darkred">UNREGISTERED</td>
+                                </tr>
+                            @endif
+                        @endforeach
+                        </tbody>
+
+                    @endif
+                </table>
+
+            </div>
+        </div>
+
 
 
 {{--        W3school searchh box--}}
@@ -14,114 +90,6 @@
 {{--        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">--}}
 
 
-        <table id="data-table" class="table table-striped border table-responsive-xl" style="width:100%">
-            <thead>
-            <tr>
-                <th>No</th>
-                <th>License Plate</th>
-                <th>Status</th>
-                <th>Time</th>
-                <th>Date</th>
-                <th>Car way</th>
-
-            </tr>
-
-            </thead>
-            <tbody>
-{{--            @foreach($bg_records as $bg_record)--}}
-
-{{--                @if($bg_record -> status == 1)--}}
-
-{{--                    @if($bg_record -> carway ==0)--}}
-{{--                        <tr id="">--}}
-{{--                            <th scope="row">{{ $loop->iteration }}</th>--}}
-{{--                            <td>{{ $bg_record -> lp}}</td>--}}
-{{--                            <td> PASS</td>--}}
-{{--                            <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('h:i:s')}}</td>--}}
-{{--                            <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('d-m-Y')}}</td>--}}
-{{--                            <td style="color: forestgreen">IN</td>--}}
-{{--                        </tr>--}}
-{{--                    @else--}}
-{{--                        <tr id="">--}}
-{{--                            <th scope="row">{{ $loop->iteration }}</th>--}}
-{{--                            <td>{{ $bg_record -> lp}}</td>--}}
-{{--                            <td> PASS</td>--}}
-{{--                            <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('h:i:s')}}</td>--}}
-{{--                            <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('d-m-Y')}}</td>--}}
-{{--                            <td style="color: red">OUT</td>--}}
-{{--                        </tr>--}}
-{{--                    @endif--}}
-
-
-{{--                @else--}}
-{{--                    <tr id="">--}}
-{{--                        <th scope="row">{{ $loop->iteration }}</th>--}}
-{{--                        <td>{{ $bg_record -> lp}}</td>--}}
-{{--                        <td> FAILED</td>--}}
-
-{{--                        <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('h:i:s')}}</td>--}}
-{{--                        <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('d-m-Y')}}</td>--}}
-{{--                        <td style="color: darkred">UNREGISTERED</td>--}}
-{{--                    </tr>--}}
-{{--                @endif--}}
-{{--            @endforeach--}}
-{{--            </tbody>--}}
-
-
-        @if(empty($bg_records))
-                <tbody>
-                <td></td>
-                <td></td>
-                <td class="text-danger text-center"> No records </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tbody>
-
-            @else
-                <tbody>
-                @foreach($bg_records as $bg_record)
-
-                    @if($bg_record -> status == 1)
-
-                        @if($bg_record -> carway ==0)
-                            <tr id="">
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $bg_record -> lp}}</td>
-                                <td> PASS</td>
-                                <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('h:i:s')}}</td>
-                                <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('d-m-Y')}}</td>
-                                <td style="color: forestgreen">IN</td>
-                            </tr>
-                        @else
-                            <tr id="">
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $bg_record -> lp}}</td>
-                                <td> PASS</td>
-                                <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('h:i:s')}}</td>
-                                <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('d-m-Y')}}</td>
-                                <td style="color: red">OUT</td>
-                            </tr>
-                        @endif
-
-
-                    @else
-                        <tr id="">
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $bg_record -> lp}}</td>
-                            <td> FAILED</td>
-
-                            <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('h:i:s')}}</td>
-                            <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('d-m-Y')}}</td>
-                            <td style="color: darkred">UNREGISTERED</td>
-                        </tr>
-                    @endif
-                @endforeach
-                </tbody>
-
-            @endif
-
-        </table>
 
     </div>
 

@@ -7,29 +7,29 @@ use Illuminate\Http\Request;
 use App\Models\Barriergate;
 use Illuminate\Support\Facades\DB;
 use Dompdf\Dompdf;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\User;
+use App\Models\RegisteredVehicle;
 
 class ReportController extends Controller
 {
-    public function printpdf()
+    public function printpdf( $report_records)
     {
-        // instantiate and use the dompdf class
-        $data['name']="name";
+//        dd($report_records);
 
-        $dompdf = new Dompdf();
-        require_once "dompdf_config.inc.php";
-        $file="http://localhost:8000/dateprocess";
-        $html=file_get_contents($file);
 
-        $dompdf->loadHtml($html);
+//
+//        $report_records = DB::select('select * from barriergate where DATE(timestamp) = ?',[$date]);
+//        $count_records = count(DB::select('select * from barriergate where DATE(timestamp) = ?',[$date]));
+//        $pass = count(DB::select('select * from barriergate where status = 1 and date(timestamp) =?',[$date]));
+//        $fail = count(DB::select('select * from barriergate where status = 0 and date(timestamp) =?',[$date]));
+//
+//        $data = [$report_records, $count_records, $pass,$fail];
+//        $pdf = Pdf::loadView('admin.report', $data);
+//        return $pdf->download();
 
-// (Optional) Setup the paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
 
-// Render the HTML as PDF
-        $dompdf->render();
 
-// Output the generated PDF to Browser
-        $dompdf->stream('report.pdf');
 
 
 

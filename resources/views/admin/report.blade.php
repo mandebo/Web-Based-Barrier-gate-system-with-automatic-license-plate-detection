@@ -2,7 +2,7 @@
 
 @section('report')
 
-    <div class="container  report border p-5 bg-light ">
+    <div class="container  report border p-3 bg-light ">
 
         <form action="{{ url('dateprocess') }}" method="post">
             @csrf
@@ -129,9 +129,9 @@
 
                 </tbody>
             </table>
-            <form action="{{ url('printpdf') }}" method="post">
+            <form action="{{ url('printpdf/{report_records}') }}" method="post">
                 @csrf
-                <button type="submit" class=" print-btn btn btn-primary btn-sm">Print report</button>
+                <button type="submit" class=" print-btn btn btn-primary btn-sm">Generate PDF</button>
             </form>
 
 

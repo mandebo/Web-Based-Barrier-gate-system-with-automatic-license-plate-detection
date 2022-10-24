@@ -32,6 +32,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
+{{--    ck editor script--}}
+    <script src="//cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
     <link
         href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
         rel="stylesheet"
@@ -55,6 +57,10 @@
 
 
 {{--    end of doughnut chart--}}
+
+{{--    summernote cdn--}}
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.11/dist/summernote-bs4.min.css" rel="stylesheet">
+
 
 
 
@@ -99,7 +105,7 @@
                     </a>
                 </li>
                 <li class="list">
-                    <a href="#" class="nav-link">
+                    <a href="{{ url('announcement-admin') }}" class="nav-link">
                         <i class="bx bx-bar-chart-alt-2 icon"></i>
                         <span class="link">Manage announcement</span>
                     </a>
@@ -161,6 +167,10 @@
 
 <div class="">
     @yield('report')
+</div>
+
+<div class="">
+    @yield('admin-announcement')
 </div>
 
 <script>

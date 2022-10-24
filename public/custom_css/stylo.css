@@ -123,7 +123,7 @@ nav.open ~ .overlay {
 }
 
 .report {
-    margin-top: 150px;
+    margin-top: 100px;
 }
 
 .date-picker
@@ -138,7 +138,7 @@ nav.open ~ .overlay {
 
 .monitor-table
 {
-    margin-bottom: 20px;
+    margin-top: 15px;
 }
 
 .pass
@@ -167,6 +167,15 @@ nav.open ~ .overlay {
 .navigation-home
 {
     z-index: 100;
+}
+.announcement-create
+{
+    margin-top: 30px;
+}
+.file-form
+{
+    margin-top: 10px;
+    color: steelblue;
 }
 
 

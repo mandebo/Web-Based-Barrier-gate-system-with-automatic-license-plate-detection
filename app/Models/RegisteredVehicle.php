@@ -9,5 +9,4 @@ class RegisteredVehicle extends Model
 {
 
 
-
 }
