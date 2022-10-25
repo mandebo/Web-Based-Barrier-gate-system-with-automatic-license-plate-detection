@@ -59,7 +59,7 @@
 {{--    end of doughnut chart--}}
 
 {{--    summernote cdn--}}
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.11/dist/summernote-bs4.min.css" rel="stylesheet">
+
 
 
 
