@@ -11,10 +11,21 @@
                  <th>Model</th>
                  <th>Time registered</th>
                  <th></th>
-
-
-
             </thead>
+
+            @if(empty($records))
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td style="color: red;">No record found</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+
+            @endif
 
 
             <tbody>
@@ -49,7 +60,7 @@
 @endif
 
 {{--Register card--}}
-    <div class="container registration w-50">
+    <div class="container registration ">
         <div class="card">
             <div class="card-header align-content-center">
                 Please insert vehicle details

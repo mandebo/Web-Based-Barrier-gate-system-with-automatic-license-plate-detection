@@ -13,6 +13,12 @@ class AnnouncementController extends Controller
         $announcements = DB::select('select * from announcement ORDER BY timestamp DESC ');
         return view('admin.admin-announcement')->with('announcements',$announcements);
     }
+    public function res_index()
+    {
+        $announcements = DB::select('select * from announcement ORDER BY timestamp DESC ');
+        return view('resident.announcement-resident')->with('announcements',$announcements);
+
+    }
 
     public function addnews(Request $request)
     {
@@ -39,13 +45,21 @@ class AnnouncementController extends Controller
                 $query = DB::table('announcement')->insert($data);
 
                 $announcements = DB::select('select * from announcement ORDER BY timestamp DESC ');
-//               return view('admin.admin-announcement')->with('announcements',$announcements);
-
-
+                return view('admin.admin-announcement')->with('announcements',$announcements);
 
             }
 
     }
+
+    public function view_announcement($announcement_id)
+    {
+        $annviews = DB::select('select * from announcement where announcement_id = ?',[$announcement_id]);
+//        dd($annviews);
+        return view('resident.view_announcement')->with('annviews',$annviews);
+
+    }
+
+
 
 
 }

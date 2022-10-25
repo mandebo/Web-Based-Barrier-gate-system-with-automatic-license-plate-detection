@@ -45,6 +45,10 @@ Route::post('dateprocess','App\Http\Controllers\ReportController@dateprocess');
 Route::post('printpdf/{report_records}','App\Http\Controllers\ReportController@printpdf');
 Route::get('announcement-admin','App\Http\Controllers\AnnouncementController@index');
 Route::post('publish-news','App\Http\Controllers\AnnouncementController@addnews');
+Route::get('res_announcement','App\Http\Controllers\AnnouncementController@res_index');
+Route::get('view_announcement/{announcement_id}','App\Http\Controllers\AnnouncementController@view_announcement');
+
+
 
 
 

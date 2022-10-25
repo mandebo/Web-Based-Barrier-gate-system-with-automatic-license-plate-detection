@@ -43,9 +43,9 @@
 
 {{--            <button type="button"> {{ Auth::user()->name }}</button>--}}
 
-<nav>
+<nav class="bg-light border navigation-home">
 
-    <div class="container-fluid">
+    <div class="container-fluid ">
         <div class="row justify-content-end">
             <div class="col-md-10 col-sm-10">
                 <i class="bx bx-menu menu-icon pr-2 font-size"></i>
@@ -56,6 +56,7 @@
             <div class="col-md-2 col-sm-2 col-2">
 
                 <span>{{ Auth::user()->name }}</span>
+
 
             </div>
         </div>
@@ -88,7 +89,7 @@
                     </a>
                 </li>
                 <li class="list">
-                    <a href="#" class="nav-link">
+                    <a href="{{ url('res_announcement') }}" class="nav-link">
                         <i class="bx bx-message-rounded icon"></i>
                         <span class="link">Announcements</span>
                     </a>
@@ -115,6 +116,15 @@
 <div>
    @yield('register')
 </div>
+
+
+
+<div>
+    @yield('r-announcement')
+</div>
+
+@yield('view_announcement')
+
 
 {{--End of License plate registration--}}
 
