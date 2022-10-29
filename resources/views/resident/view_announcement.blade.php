@@ -9,7 +9,16 @@
 
                 <div class="card-body">
                     <h2 class="font-monospace border-bottom pb-2"> {{$annview->title}}</h2>
-                    <p class="card-text text-justify border-bottom pb-2">{{$annview->content}}</p>
+{{--                    <p id="editor" class="card-text text-justify border-bottom pb-2">{{$annview->content}}</p>--}}
+
+
+                    <textarea name="content" id="editor">{{ $data =  str_replace('&','&amp;',$annview->content) }}</textarea>
+
+
+
+
+                    {{--                    <pre class="card-text text-justify border-bottom pb-2">{{$annview->content}} </pre>--}}
+
                     <p><small class="text-muted">Posted at {{  Carbon\Carbon::parse($annview->timestamp)->format('d-m-Y')}}</small>
                     </p>
                     <a href="{{ url('res_announcement') }}"><button class="btn-primary btn">
@@ -18,4 +27,15 @@
                 </div>
             </div>
         @endforeach
+       <script>
+           CKEDITOR.replace('editor')
+       </script>
+
+       <script>
+           ClassicEditor
+               .create( document.querySelector( '#editor' ) )
+               .catch( error => {
+                   console.error( error );
+               } );
+       </script>
 @endsection

@@ -39,6 +39,8 @@ Route::get('logouts','App\Http\Controllers\LogoutController@perform');
 Route::get('registration','App\Http\Controllers\HomeController@register');
 Route::post('addlp','App\Http\Controllers\HomeController@addlp');
 Route::get('deletelp/{car_id}','App\Http\Controllers\HomeController@deletelp');
+Route::post('editlp/{car_id}','App\Http\Controllers\HomeController@editlp');
+
 Route::get('monitor','App\Http\Controllers\MonitorController@index');
 Route::get('report','App\Http\Controllers\ReportController@index');
 Route::post('dateprocess','App\Http\Controllers\ReportController@dateprocess');

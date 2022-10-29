@@ -7,13 +7,14 @@
         <span class="badge badge-info" style="font-size: 1.2rem;"> Latest announcements</span>
         <div class="row " style="margin-top: 15px;">
             @foreach($announcements as $announcement)
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4">
                     <div class="card mb-4 box-shadow news-box">
                         <img class="card-img-top img-thumbnail border " src="{{asset('/storage/'.$announcement->image)}}" style="height: 8rem;" alt="Card image cap">
                         <div class="card-body">
                             <p class="card-text font-weight-bold">{{$announcement->title}}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
+
 
 
 

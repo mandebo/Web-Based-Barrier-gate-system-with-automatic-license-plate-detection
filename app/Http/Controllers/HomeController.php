@@ -24,7 +24,9 @@ class HomeController extends Controller
             return view('admin.dashboard');
         }
         else{
-            return view('dashboard');
+            $announcements = DB::select('select * from announcement ORDER BY timestamp DESC ');
+            return view('resident.announcement-resident')->with('announcements',$announcements);
+
         }
 
     }
@@ -67,6 +69,25 @@ class HomeController extends Controller
         //redirect is used with compact so that the function wont be called everytime.
 
 
+
+    }
+
+    public function editlp(Request $request, $car_id)
+    {
+//        $newlp = $request -> input('editlp');
+//        $newmodel = $request ->input('editmodel');
+
+
+        $updateDetails = [
+            'lp' => $request->input('editlp'),
+            'model' => $request->input('editmodel')
+        ];
+
+        DB::table('registered_vehicle')
+            ->where('car_id', $car_id)
+            ->update($updateDetails);
+
+            return redirect('registration')->with('updated');
 
     }
 

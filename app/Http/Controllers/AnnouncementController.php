@@ -55,6 +55,7 @@ class AnnouncementController extends Controller
     {
         $annviews = DB::select('select * from announcement where announcement_id = ?',[$announcement_id]);
 //        dd($annviews);
+
         return view('resident.view_announcement')->with('annviews',$annviews);
 
     }

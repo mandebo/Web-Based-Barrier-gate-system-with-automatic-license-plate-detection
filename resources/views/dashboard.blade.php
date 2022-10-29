@@ -27,6 +27,8 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <link
         href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
         rel="stylesheet"
@@ -152,4 +154,21 @@
 
 @livewireScripts
 </body>
+
+<section class="">
+    <!-- Footer -->
+    <footer class="bg-secondary text-white text-center footer">
+        <!-- Grid container -->
+
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2020 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+</section>
+
 </html>
