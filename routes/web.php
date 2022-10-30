@@ -40,6 +40,8 @@ Route::get('registration','App\Http\Controllers\HomeController@register');
 Route::post('addlp','App\Http\Controllers\HomeController@addlp');
 Route::get('deletelp/{car_id}','App\Http\Controllers\HomeController@deletelp');
 Route::post('editlp/{car_id}','App\Http\Controllers\HomeController@editlp');
+Route::post('fetchedit/{user_id}/{car_id}','App\Http\Controllers\HomeController@fetchedit');
+
 
 Route::get('monitor','App\Http\Controllers\MonitorController@index');
 Route::get('report','App\Http\Controllers\ReportController@index');

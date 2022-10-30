@@ -87,7 +87,19 @@ class HomeController extends Controller
             ->where('car_id', $car_id)
             ->update($updateDetails);
 
-            return redirect('registration')->with('updated');
+            return redirect('registration');
+
+    }
+
+    public function fetchedit($user_id,$car_id )
+    {
+        $records = DB::select ('select * from registered_vehicle where user_id = ?', [$user_id]);
+        $edits = DB::select('select * from registered_vehicle where car_id = ?',[$car_id]);
+
+
+
+        return view('resident.registrationedit',compact('edits','records'));
+
 
     }
 
@@ -95,7 +107,7 @@ class HomeController extends Controller
     public function deletelp($car_id)
     {
         DB::delete('delete from registered_vehicle where car_id = ?', [$car_id]);
-        return redirect('registration')->with('deleted','Record is deleted successfully');
+        return redirect('registration');
 
     }
 

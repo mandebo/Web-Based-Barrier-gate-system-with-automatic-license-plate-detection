@@ -37,8 +37,8 @@
 
                     <td id="recordlp">{{$record->lp}}</td>
                     <td>{{$record->model}}</td>
-                    <td>{{$record->timestamp}}</td>
-                    <td>{{$record->timestamp}}</td>
+                    <td>{{Carbon\Carbon::parse($record->timestamp)->format('h:i')}}</td>
+                    <td>{{Carbon\Carbon::parse($record->timestamp)->format('d-m-Y')}}</td>
 
                     <td class="row">
 
