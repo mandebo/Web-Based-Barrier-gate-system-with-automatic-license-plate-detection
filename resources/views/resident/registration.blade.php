@@ -4,12 +4,13 @@
 
 
 {{--License plate records--}}
-    <div class="container align-content-center  lp-record rounded border ">
+    <div class="container align-content-center  lp-record rounded border " >
         <table class="table table-hover ">
             <thead>
                  <th>License Plate</th>
                  <th>Model</th>
-                 <th>Time registered</th>
+                 <th>Time</th>
+                 <th>Date</th>
                  <th></th>
             </thead>
 
@@ -37,15 +38,20 @@
                     <td id="recordlp">{{$record->lp}}</td>
                     <td>{{$record->model}}</td>
                     <td>{{$record->timestamp}}</td>
+                    <td>{{$record->timestamp}}</td>
 
-                    <td>
-                        <a onclick="hideContent()"><button class="btn btn-primary">Edit</button></a>
+                    <td class="row">
 
-                        <a href="deletelp/{{$record->car_id}}"><button onclick="showDelete()" type="button" class="btn btn-danger">
+                            <form class="pr-1" action="{{ url('fetchedit',[$record->user_id,$record->car_id]) }}" method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            </form>
 
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><path fill="currentColor" d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/></svg>
-
-                            </button></a>
+                        <form class="pr-1" action="{{ url('deletelp',$record->car_id) }}" id="deleteForm">
+                            <a class=""><button onclick="showDelete()" type="button" class="btn btn-danger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><path fill="currentColor" d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/></svg>
+                                </button></a>
+                        </form>
                     </td>
 {{--                    <td> <i class="bi bi-trash-fill"></i></td>--}}
                 </tr>
@@ -60,12 +66,32 @@
 
     </div>
 
-{{--@if(Session::get('deleted'))--}}
-{{--    <div class="alert alert-success container">--}}
-{{--        {{Session::get('deleted')}}--}}
-{{--    </div>--}}
+<script>
+    function showDelete()
+    {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
 
-{{--@endif--}}
+                document.getElementById('deleteForm').submit();
+
+            }
+        })
+
+    }
+</script>
 
 {{--Register card--}}
     <div class="container registration " >
@@ -114,19 +140,7 @@
                 </form>
 
 {{--            edit form--}}
-                <script>
-                    function showDelete()
-                    {
-                        Swal.fire({
 
-                            icon: 'success',
-                            title: 'You record is deleted successfully',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-
-                    }
-                </script>
 
                 <script>
                     function showAlert()
@@ -134,7 +148,14 @@
                         var lp = document.getElementById("licenseplate").value;
                         var model = document.getElementById("model").value;
                         event.preventDefault();
-                        // document.getElementById('regiForm').submit();
+
+                        var front = lp.charAt(0);
+
+
+
+
+
+                        document.getElementById('regiForm').submit();
 
                         if(lp == '' || model == '' )
                         {
@@ -145,6 +166,17 @@
 
                             })
                         }
+                        // if(!front.isNaN)
+                        // {
+                        //     Swal.fire({
+                        //         icon: 'error',
+                        //         title: 'Oops...',
+                        //         text: 'Please enter a valid license plate'
+                        //
+                        //     })
+                        //
+                        //
+                        // }
                         else
                         {
                             Swal.fire({
@@ -259,7 +291,7 @@
                                 </div>
                                 <div class="col-sm">
                                     <div class="">
-                                        <button onclick="showEdit()"  class="btn btn-primary">submit</button>
+                                      <a href="editlp/{{$record->car_id}}"><button onclick="showEdit()"  class="btn btn-primary">submit</button></a>
                                     </div>
                                 </div>
                             </div>
@@ -294,39 +326,39 @@
                             // }
                         }
                     </script>
-                <script>
-                    function showEdit()
-                    {
-                        var lp = document.getElementById("editlp").value;
-                        var model = document.getElementById("editmodel").value;
-                        event.preventDefault();
-                        // document.getElementById('regiForm').submit();
+{{--                <script>--}}
+{{--                    function showEdit()--}}
+{{--                    {--}}
+{{--                        var lp = document.getElementById("editlp").value;--}}
+{{--                        var model = document.getElementById("editmodel").value;--}}
+{{--                        event.preventDefault();--}}
+{{--                        // document.getElementById('regiForm').submit();--}}
 
-                        if(lp == '' || model == '' )
-                        {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Please enter both field'
+{{--                        if(lp == '' || model == '' )--}}
+{{--                        {--}}
+{{--                            Swal.fire({--}}
+{{--                                icon: 'error',--}}
+{{--                                title: 'Oops...',--}}
+{{--                                text: 'Please enter both field'--}}
 
-                            })
-                        }
-                        else
-                        {
-                            document.getElementById('editForm2').submit();
-                            Swal.fire({
+{{--                            })--}}
+{{--                        }--}}
+{{--                        else--}}
+{{--                        {--}}
+{{--                            document.getElementById('editForm2').submit();--}}
+{{--                            Swal.fire({--}}
 
-                                icon: 'success',
-                                title: 'Your record is updated',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+{{--                                icon: 'success',--}}
+{{--                                title: 'Your record is updated',--}}
+{{--                                showConfirmButton: false,--}}
+{{--                                timer: 1500--}}
+{{--                            })--}}
 
 
-                        }
-                    }
+{{--                        }--}}
+{{--                    }--}}
 
-                </script>
+{{--                </script>--}}
 
             </div>
 

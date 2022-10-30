@@ -21,8 +21,11 @@
 
 
     <div class="container announcement-create ">
+        <div class="pb-2">
+            <span class="badge badge-info " style="font-size: 1.2rem;"> Publish announcements</span>
 
-        <h4> Publish new announcement</h4>
+        </div>
+
         @if(Session::get('publish'))
             <div class="alert alert-success container">
                 Announcement is published successfully
@@ -30,7 +33,7 @@
 
         @endif
 
-        <form action="{{ url('publish-news') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ url('publish-news') }}" method="post" enctype="multipart/form-data" class="mb-2">
             @csrf
 
             <div class="form-group">
@@ -43,7 +46,7 @@
                 <input name="image" class="form-control file-form pr-2" type="file" id="formFile">
             </div>
 
-            <button type="submit" class="btn btn-primary btn-md">Publish</button>
+            <button type="submit" class="btn btn-info btn-md">Publish</button>
 
             <script>
                 var desc = CKEDITOR.instances.DSC.getData();
@@ -55,9 +58,17 @@
         <script>
             CKEDITOR.replace('content')
         </script>
+
     </div>
 
-<div class="container  p-5">
+
+
+
+
+<div class="container pt-5">
+    <div class="pb-3">
+        <span class="badge badge-info " style="font-size: 1.2rem;"> Past announcements</span>
+    </div>
     <div class="row">
         @foreach($announcements as $announcement)
             <div class="col-lg-4 ">
@@ -77,16 +88,6 @@
             </div>
         @endforeach
     </div>
-    {{--
-    {{--        @foreach($announcements as $announcement)--}}
-    {{--            <div class="card col-md-4" >--}}
-    {{--                <img class="card-img-top" src="{{asset('/storage/'.$announcement->image)}}" alt="Card image cap">--}}
-    {{--                <div class="card-body">--}}
-    {{--                    <h5 class="card-title"> {{$announcement->title}}</h5>--}}
-    {{--                    <a href="#" class="btn btn-primary">Go somewhere</a>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--      @endforeach--}}
 </div>
 
 

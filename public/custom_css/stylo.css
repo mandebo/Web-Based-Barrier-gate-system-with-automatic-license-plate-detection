@@ -1,6 +1,9 @@
 /* Google Fonts - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
+.bg-primary{
+    background-color: #54B4D3!important;
+}
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +12,10 @@
 }
 body {
     min-height: 100%;
+
+    /*background-image: url("website-background2.png");*/
+    /*background-size: cover;*/
+    /*background-attachment: fixed;*/
 
     /*background: #e3f2fd;*/
 }
@@ -196,6 +203,38 @@ nav.open ~ .overlay {
 {
     margin-top: 250px;
 
+}
+
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 260px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 80px;
+
+
+    /*box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);*/
+}
+
+/* The navigation menu links */
+
+
+.sidenav .sidebar-content
+{
+    padding: 10px;
+}
+
+.sidebar-content
+{
+
+}
+.footer-front
+{
+    z-index: 999;
+    position: relative;
 }
 
 

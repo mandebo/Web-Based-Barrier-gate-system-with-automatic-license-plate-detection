@@ -72,25 +72,25 @@
 
 {{--            <button type="button"> {{ Auth::user()->name }}</button>--}}
 
-<nav class="bg-light position-sticky navigation-home border">
+<nav class="bg-primary position-sticky navigation-home border" >
 
     <div class="container-fluid ">
         <div class="row justify-content-end">
             <div class="col-md-10 col-sm-10 col-10">
-                <i class="bx bx-menu menu-icon pr-2 font-size"></i>
-                <span class="logo-name font-weight-bold font-size">EasyPark-Admins</span>
+                <i class="bx bx-menu menu-icon pr-2 font-size d-lg-none d-sm-inline d-md-inline"></i>
+                <span class="logo-name font-weight-bold font-size" style="color: white">EasyPark-Admins</span>
 
             </div>
 
             <div class="col-md-2 col-sm-2 col-2">
 
-                <span>{{ Auth::user()->name }}</span>
+                <span style="color: white">{{ Auth::user()->name }}</span>
 
             </div>
         </div>
 
     </div>
-    <div class="sidebar">
+    <div class="sidebar d-lg-none d-sm-block d-md-block">
         <div class="logo">
             <i class="bx bx-menu menu-icon"></i>
             <span class="logo-name">EasyPark</span>
@@ -132,10 +132,55 @@
 
 
                 </li>
+            </ul>
         </div>
+
     </div>
     </div>
 </nav>
+
+
+<div class="sidenav bg-white border d-none d-lg-block">
+    <div class="sidebar-content">
+        <ul class="lists">
+            <li class="list">
+                <a href="{{ url('monitor') }}" class="nav-link">
+                    <i class="bx bx-home-alt icon"></i>
+                    <span class="link">Monitor vehicle traffic</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="{{ url('announcement-admin') }}" class="nav-link">
+                    <i class="bx bx-bar-chart-alt-2 icon"></i>
+                    <span class="link">Manage announcement</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#" class="nav-link">
+                    <i class="bx bx-bell icon"></i>
+                    <span class="link">Alert and blacklist</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="{{ url('report') }}" class="nav-link">
+                    <i class="bx bx-message-rounded icon"></i>
+                    <span class="link">Generate access report</span>
+                </a>
+            </li>
+
+            <li class="list">
+
+                <a href="{{ url('logouts') }}" class="nav-link">
+                    <i class="bx bx-log-out icon"></i>
+                    <span class="link">Logout</span>
+                </a>
+
+
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
 
 <section class="overlay"></section>
 
