@@ -133,13 +133,25 @@
 
                         </tbody>
                     </table>
-                    <form action="{{ url('printpdf/{report_records}') }}" method="post">
-                        @csrf
-                        <button type="submit" class=" print-btn btn btn-primary btn-sm">Generate PDF</button>
-                    </form>
 
+{{--                        <form action="{{ url('printpdf', $report_record->timestamp) }}" method="post">--}}
+
+
+                        <button onclick="screenShot()" type="button" class=" print-btn btn btn-primary btn-sm">Generate PDF</button>
 
                 </div>
+{{--                <script>--}}
+
+{{--                    function screenShot()--}}
+{{--                    {--}}
+{{--                        import html2canvas from 'html2canvas';--}}
+{{--                        html2canvas("#data-table2").then(function(canvas) {--}}
+{{--                            document.body.appendChild(canvas);--}}
+{{--                        });--}}
+
+{{--                    }--}}
+
+{{--                </script>--}}
 
 
             @endisset
@@ -149,6 +161,13 @@
 
 
 
+
+    </div>
+
+
+
+
+    <div>
 
     </div>
 
@@ -169,6 +188,9 @@
         today = yyyy + '-' + mm + '-' + dd;
         document.getElementById("datefield").setAttribute("max", today);
     </script>
+
+
+
 
 
 

@@ -45,7 +45,7 @@ class AnnouncementController extends Controller
                 $query = DB::table('announcement')->insert($data);
 
                 $announcements = DB::select('select * from announcement ORDER BY timestamp DESC ');
-                return view('admin.admin-announcement')->with('announcements',$announcements);
+                return redirect('announcement-admin')->with('announcements',$announcements);
 
             }
 
@@ -59,6 +59,65 @@ class AnnouncementController extends Controller
         return view('resident.view_announcement')->with('annviews',$annviews);
 
     }
+
+    public function adminview($announcement_id)
+    {
+
+        $annviews = DB::select('select * from announcement where announcement_id = ?',[$announcement_id]);
+        return view('admin.adminview')->with('annviews',$annviews);
+
+    }
+
+
+    public function edit_announcement($announcement_id)
+    {
+        $ann_edits = DB::select('select * from announcement where announcement_id = ?',[$announcement_id]);
+        $announcements = DB::select('select * from announcement ORDER BY timestamp DESC ');
+        return view('admin.edit-announcement',compact('ann_edits','announcements'));
+
+    }
+
+    public function save_news( Request $request, $announcement_id)
+    {
+        $newfile = $request->file('image');
+        $file_path = $newfile->store('images','public');
+
+
+        $updateDetails = [
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
+            'image' => $file_path
+        ];
+
+        DB::table('announcement')
+            ->where('announcement_id', $announcement_id)
+            ->update($updateDetails);
+
+
+        return redirect('announcement-admin');
+
+    }
+    public function deleteannfetch($announcement_id)
+    {
+
+
+        $deleteinfos=DB::select('select * from announcement where announcement_id = ?',[$announcement_id]);
+        $announcements = DB::select('select * from announcement ORDER BY timestamp DESC ');
+
+        return view('admin.delete-announcement',compact('deleteinfos','announcements'));
+
+
+    }
+
+
+    public function deleteann($announcement_id)
+    {
+
+        DB::delete('delete from announcement where announcement_id = ?',[$announcement_id]);
+        return redirect('announcement-admin');
+    }
+
+
 
 
 

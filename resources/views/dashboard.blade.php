@@ -17,6 +17,15 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('custom_css/stylo.css') }}" >
     <link rel="stylesheet" type="text/css" href="{{ asset('custom_css/font-awesome.min.css') }}" >
 
+{{--    CK editor--}}
+    <script src="//cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
+    <link
+        href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+        rel="stylesheet"
+    />
+
+{{--    CK-editor end--}}
+
 {{--    <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap-icons.css') }}" >--}}
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">--}}
 
@@ -77,7 +86,7 @@
                 <li class="list">
                     <a href="{{ url('registration') }}" class="nav-link">
                         <i class="bx bx-home-alt icon"></i>
-                        <span class="link">Manage License Plate</span>
+                        <span class="link">Manage License Plates</span>
                     </a>
                 </li>
                 <li class="list">
@@ -120,25 +129,25 @@
         <ul class="lists">
             <li class="list">
                 <a href="{{ url('registration') }}" class="nav-link">
-                    <i class="bx bx-home-alt icon"></i>
+                    <i class="bx bx-car icon"></i>
                     <span class="link">Manage License Plate</span>
                 </a>
             </li>
             <li class="list">
-                <a href="#" class="nav-link">
-                    <i class="bx bx-bar-chart-alt-2 icon"></i>
+                <a href="{{ url('history') }}" class="nav-link">
+                    <i class="bx bx-history icon"></i>
                     <span class="link">Access History</span>
                 </a>
             </li>
             <li class="list">
                 <a href="#" class="nav-link">
-                    <i class="bx bx-bell icon"></i>
+                    <i class="bx bx-message-dots icon"></i>
                     <span class="link">Feedback</span>
                 </a>
             </li>
             <li class="list">
                 <a href="{{ url('res_announcement') }}" class="nav-link">
-                    <i class="bx bx-message-rounded icon"></i>
+                    <i class="bx bx-bell icon"></i>
                     <span class="link">Announcements</span>
                 </a>
             </li>
@@ -175,6 +184,7 @@
 
 @yield('view_announcement')
 @yield('registeredit')
+@yield('register-delete')
 
 
 {{--End of License plate registration--}}

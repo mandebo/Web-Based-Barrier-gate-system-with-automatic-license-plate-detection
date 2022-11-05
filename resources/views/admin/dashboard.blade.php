@@ -55,8 +55,12 @@
                 "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js">
     </script>
 
+{{--    sweetalert--}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-{{--    end of doughnut chart--}}
+
+
+    {{--    end of doughnut chart--}}
 
 {{--    summernote cdn--}}
 
@@ -100,13 +104,13 @@
             <ul class="lists">
                 <li class="list">
                     <a href="{{ url('monitor') }}" class="nav-link">
-                        <i class="bx bx-home-alt icon"></i>
+                        <i class="bx bxs-traffic-barrier icon"></i>
                         <span class="link">Monitor vehicle traffic</span>
                     </a>
                 </li>
                 <li class="list">
                     <a href="{{ url('announcement-admin') }}" class="nav-link">
-                        <i class="bx bx-bar-chart-alt-2 icon"></i>
+                        <i class="bx bx-message-dots icon"></i>
                         <span class="link">Manage announcement</span>
                     </a>
                 </li>
@@ -118,7 +122,7 @@
                 </li>
                 <li class="list">
                     <a href="{{ url('report') }}" class="nav-link">
-                        <i class="bx bx-message-rounded icon"></i>
+                        <i class="bx bx-receipt icon"></i>
                         <span class="link">Generate access report</span>
                     </a>
                 </li>
@@ -134,8 +138,6 @@
                 </li>
             </ul>
         </div>
-
-    </div>
     </div>
 </nav>
 
@@ -145,13 +147,13 @@
         <ul class="lists">
             <li class="list">
                 <a href="{{ url('monitor') }}" class="nav-link">
-                    <i class="bx bx-home-alt icon"></i>
+                    <i class="bx bxs-traffic-barrier icon"></i>
                     <span class="link">Monitor vehicle traffic</span>
                 </a>
             </li>
             <li class="list">
                 <a href="{{ url('announcement-admin') }}" class="nav-link">
-                    <i class="bx bx-bar-chart-alt-2 icon"></i>
+                    <i class="bx bx-message-dots icon"></i>
                     <span class="link">Manage announcement</span>
                 </a>
             </li>
@@ -163,7 +165,7 @@
             </li>
             <li class="list">
                 <a href="{{ url('report') }}" class="nav-link">
-                    <i class="bx bx-message-rounded icon"></i>
+                    <i class="bx bx-receipt icon"></i>
                     <span class="link">Generate access report</span>
                 </a>
             </li>
@@ -217,6 +219,9 @@
 <div class="">
     @yield('admin-announcement')
 </div>
+
+@yield('adminview_announcement')
+@yield('delete_announcement')
 
 <script>
     $(document).ready(function () {

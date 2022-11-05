@@ -12,6 +12,7 @@ class HomeController extends Controller
 {
     public function __construct()
     {
+
         $this->middleware('auth');
     }
 
@@ -21,7 +22,7 @@ class HomeController extends Controller
 
         if($role =='1')
         {
-            return view('admin.dashboard');
+            return view('admin.monitor');
         }
         else{
             $announcements = DB::select('select * from announcement ORDER BY timestamp DESC ');
@@ -51,20 +52,38 @@ class HomeController extends Controller
         ]);
 
 
+
+
         $user_id= Auth::user()->id;
         $licenseplate = strtoupper($request->input('licenseplate')); //input is according to name in form
+        $check = DB::select('select * from registered_vehicle where lp = ?',[$licenseplate]);
+
         $model = $request->input('model');
         $timestamp = \Carbon\Carbon::now()->toDateTimeString();
 
         $data=array('lp'=>$licenseplate,"model"=>$model,"timestamp"=>$timestamp,"user_id"=>$user_id);
 
 
-        $query = DB::table('registered_vehicle')->insert($data);
+
         $records = DB::select ('select * from registered_vehicle where user_id = ?', [$user_id]);
         $counter = count(DB::select ('select * from registered_vehicle'));
+
+        if($check == null)
+        {
+            $query = DB::table('registered_vehicle')->insert($data);
+            return redirect('registration')->with( compact('records','counter'))->with('registered','license plate is registered');
+
+        }
+        else
+        {
+            echo("license plate already registered");
+            return redirect('registration')->with( compact('records','counter'))->with('duplicate',' there is duplicated license plate');
+
+        }
+
+
 //        dd($records);
        // return view('resident.registration', compact('records','counter'));
-        return redirect('registration')->with( compact('records','counter'));
 
         //redirect is used with compact so that the function wont be called everytime.
 
@@ -93,6 +112,8 @@ class HomeController extends Controller
 
     public function fetchedit($user_id,$car_id )
     {
+
+
         $records = DB::select ('select * from registered_vehicle where user_id = ?', [$user_id]);
         $edits = DB::select('select * from registered_vehicle where car_id = ?',[$car_id]);
 
@@ -102,6 +123,18 @@ class HomeController extends Controller
 
 
     }
+    public function deletefetch($car_id)
+    {
+
+        $user_id = Auth::user()->id;
+        $deletes = DB::select('select * from registered_vehicle where car_id=?', [$car_id]);
+        $records = DB::select ('select * from registered_vehicle where user_id = ?', [$user_id]);
+        $counter = count(DB::select ('select * from registered_vehicle'));
+
+        return view('resident.registration-delete',compact('deletes','records','counter'));
+
+    }
+
 
 
     public function deletelp($car_id)

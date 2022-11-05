@@ -9,3 +9,4 @@ class Barriergate extends Model
 {
     protected $table = 'barriergate';
 }
+
