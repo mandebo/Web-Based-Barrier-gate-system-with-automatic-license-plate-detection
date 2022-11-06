@@ -71,6 +71,7 @@ Route::get('anndeletefetch/{announcement_id}','App\Http\Controllers\Announcement
 //history
 
 Route::get('history','App\Http\Controllers\HistoryController@index');
+Route::post('gethistory','App\Http\Controllers\HistoryController@gethistory');
 
 
 

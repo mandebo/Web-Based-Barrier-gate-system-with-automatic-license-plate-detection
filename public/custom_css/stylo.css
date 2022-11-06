@@ -237,7 +237,21 @@ nav.open ~ .overlay {
     position: relative;
 }
 
+.droppy:focus
+{
+    outline: blue;
 
+}
+.page-item .page-link {
+    box-shadow: none;
+}
+
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    box-shadow: none;
+}
 
 
 
@@ -257,3 +271,5 @@ nav.open ~ .overlay {
         font-size: 10px;
     }
 }
+
+/*data table css*/

@@ -17,20 +17,27 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('custom_css/stylo.css') }}" >
     <link rel="stylesheet" type="text/css" href="{{ asset('custom_css/font-awesome.min.css') }}" >
 
-{{--    CK editor--}}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"> </script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" >
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+    {{--    CK editor--}}
     <script src="//cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
     <link
         href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
         rel="stylesheet"
     />
 
-{{--    CK-editor end--}}
-
-{{--    <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap-icons.css') }}" >--}}
-{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">--}}
-
-
-    {{--    <link rel="stylesheet" type="text/css" href="{{ asset('css/boxicons.min.css') }}" >--}}
 
 
 
@@ -185,6 +192,7 @@
 @yield('view_announcement')
 @yield('registeredit')
 @yield('register-delete')
+@yield('history')
 
 
 {{--End of License plate registration--}}
@@ -205,6 +213,8 @@
     });
 </script>
 
+
+
 <!-- Page Content -->
 
 </div>
@@ -214,20 +224,6 @@
 @livewireScripts
 </body>
 
-<section class="">
-    <!-- Footer -->
-{{--    <footer class="bg-primary text-white text-center footer footer-front" style="z-index: 2;" >--}}
-{{--        <!-- Grid container -->--}}
 
-
-{{--        <!-- Copyright -->--}}
-{{--        <div class="text-center p-3 footer-front" style="background-color: rgba(0, 0, 0, 0.2);">--}}
-{{--            © 2022 FYP purposes:    BI19110038--}}
-
-{{--        </div>--}}
-{{--        <!-- Copyright -->--}}
-{{--    </footer>--}}
-    <!-- Footer -->
-</section>
 
 </html>
