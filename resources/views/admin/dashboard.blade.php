@@ -21,10 +21,24 @@
 
    <script src="https://code.jquery.com/jquery-3.5.1.js"> </script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"> </script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"> </script>
+{{--    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"> </script>--}}
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" >
+{{--jspdf--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
 
 
-{{--    Date time picker cdn --}}
+
+    {{--    html to canvas--}}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"> </script>
+
+
+
+
+
+
+
+    {{--    Date time picker cdn --}}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
 
@@ -38,7 +52,9 @@
         rel="stylesheet"
     />
 
-{{--    doughnut chart--}}
+
+
+    {{--    doughnut chart--}}
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src=
                 "https://cdn.jsdelivr.net/npm/billboard.js/dist/billboard.min.js"></script>
@@ -108,6 +124,12 @@
                     </a>
                 </li>
                 <li class="list">
+                    <a href="{{ url('resident-info') }}" class="nav-link">
+                        <i class="bx bx-group icon"></i>
+                        <span class="link">Residents information</span>
+                    </a>
+                </li>
+                <li class="list">
                     <a href="{{ url('announcement-admin') }}" class="nav-link">
                         <i class="bx bx-message-dots icon"></i>
                         <span class="link">Manage announcement</span>
@@ -151,11 +173,18 @@
                 </a>
             </li>
             <li class="list">
+                <a href="{{ url('resident-info') }}" class="nav-link">
+                    <i class="bx bx-group icon"></i>
+                    <span class="link">Residents information</span>
+                </a>
+            </li>
+            <li class="list">
                 <a href="{{ url('announcement-admin') }}" class="nav-link">
                     <i class="bx bx-message-dots icon"></i>
                     <span class="link">Manage announcement</span>
                 </a>
             </li>
+
             <li class="list">
                 <a href="#" class="nav-link">
                     <i class="bx bx-bell icon"></i>
@@ -221,6 +250,8 @@
 
 @yield('adminview_announcement')
 @yield('delete_announcement')
+@yield('resident_info')
+@yield('resident-profile')
 
 
 <script>

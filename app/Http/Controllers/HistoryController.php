@@ -25,9 +25,7 @@ class HistoryController extends Controller
         $records = DB::select('select * from users where id = ?',[$user_id]);
         $cars = DB::select('select * from registered_vehicle where user_id = ?',[$user_id]);
         $lp = $request->cars;
-
         $history = DB::select('select * from barriergate where lp = ? ORDER BY timestamp DESC ',[$lp]);
-
         return view('resident.history',compact('records','cars','history'));
 
     }

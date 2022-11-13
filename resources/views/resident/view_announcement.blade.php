@@ -13,8 +13,10 @@
                     <h2 class="font-monospace border-bottom pb-2"> {{$annview->title}}</h2>
 {{--                    <p id="editor" class="card-text text-justify border-bottom pb-2">{{$annview->content}}</p>--}}
 
+                    <div class="text-justify">
+                        <p  id="content" name="content" >{!! $annview->content !!} </p>
+                    </div>
 
-                    <textarea id="content" name="content" >{{$annview->content}} </textarea>
 
 
 
@@ -34,17 +36,17 @@
 
 
         @endforeach
-       <script>
-           CKEDITOR.replace('editor')
-       </script>
+{{--       <script>--}}
+{{--           CKEDITOR.replace('editor')--}}
+{{--       </script>--}}
 
-       <script>
-           ClassicEditor
-               .create( document.querySelector( '#editor' ) )
-               .catch( error => {
-                   console.error( error );
-               } );
-       </script>
+{{--       <script>--}}
+{{--           ClassicEditor--}}
+{{--               .create( document.querySelector( '#editor' ) )--}}
+{{--               .catch( error => {--}}
+{{--                   console.error( error );--}}
+{{--               } );--}}
+{{--       </script>--}}
 
 
 @endsection

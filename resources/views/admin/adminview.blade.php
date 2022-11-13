@@ -12,7 +12,16 @@
             <div class="card-body">
                 <h2 class="font-monospace border-bottom pb-2"> {{$annview->title}}</h2>
                 {{--                    <p id="editor" class="card-text text-justify border-bottom pb-2">{{$annview->content}}</p>--}}
-                <textarea id="content" name="content" >{{$annview->content}} </textarea>
+
+                    <div class="text-justify">
+                        <p>{!! $annview->content  !!}</p>
+
+                    </div>
+
+{{--                    <textarea class="text-justify" id="content"  >{{$annview->content}} </textarea>--}}
+
+
+
 
                 {{--                    <pre class="card-text text-justify border-bottom pb-2">{{$annview->content}} </pre>--}}
 
@@ -28,7 +37,7 @@
 
     @endforeach
     <script>
-        CKEDITOR.replace('editor')
+        CKEDITOR.replace('content')
     </script>
 
     <script>
@@ -38,6 +47,8 @@
                 console.error( error );
             } );
     </script>
+
+
 
 
 @endsection

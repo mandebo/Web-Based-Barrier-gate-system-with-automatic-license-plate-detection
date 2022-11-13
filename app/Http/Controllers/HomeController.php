@@ -22,7 +22,7 @@ class HomeController extends Controller
 
         if($role =='1')
         {
-            return view('admin.monitor');
+            return redirect('monitor');
         }
         else{
             $announcements = DB::select('select * from announcement ORDER BY timestamp DESC ');

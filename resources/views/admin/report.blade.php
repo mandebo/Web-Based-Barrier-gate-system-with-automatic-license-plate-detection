@@ -16,7 +16,7 @@
         </form>
     </div>
 
-    <div class="container border p-5 ">
+    <div class="container border p-5 " id="capture">
 
         @if(empty($report_records))
             <h5 class="text-center" style="color: blue">Please choose a date</h5>
@@ -93,7 +93,7 @@
 
 
                 <div class="container-lg">
-                    <table id="data-table2" class="report-table table table-striped border  table-responsive-xl" style="width:100%">
+                    <table id="data-table2" class="report-table table table-striped border  table-responsive-xl" id="capture" style="width:100%; ">
                         <thead>
                         <tr>
                             <th>No</th>
@@ -137,7 +137,7 @@
 {{--                        <form action="{{ url('printpdf', $report_record->timestamp) }}" method="post">--}}
 
 
-                        <button onclick="screenShot()" type="button" class=" print-btn btn btn-primary btn-sm">Generate PDF</button>
+                        <button onclick="htmlcanvas()" type="button" class=" print-btn btn btn-primary btn-sm">Save report</button>
 
                 </div>
 {{--                <script>--}}
@@ -188,6 +188,45 @@
         today = yyyy + '-' + mm + '-' + dd;
         document.getElementById("datefield").setAttribute("max", today);
     </script>
+
+
+    <script>
+        function htmlcanvas()
+        {
+            html2canvas(document.querySelector('#capture')).then(function(canvas) {
+                saveAs(canvas.toDataURL(), 'Access report {{ date('d-m-Y') }}.png');
+            });
+
+        }
+    </script>
+
+    <script>
+        function saveAs(uri, filename) {
+
+            var link = document.createElement('a');
+
+            if (typeof link.download === 'string') {
+
+                link.href = uri;
+                link.download = filename;
+
+                //Firefox requires the link to be in the body
+                document.body.appendChild(link);
+
+                //simulate click
+                link.click();
+
+                //remove the link when done
+                document.body.removeChild(link);
+
+            } else {
+
+                window.open(uri);
+
+            }
+        }
+    </script>
+
 
 
 

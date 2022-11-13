@@ -73,6 +73,19 @@ Route::get('anndeletefetch/{announcement_id}','App\Http\Controllers\Announcement
 Route::get('history','App\Http\Controllers\HistoryController@index');
 Route::post('gethistory','App\Http\Controllers\HistoryController@gethistory');
 
+//Resident info
+
+Route::get('resident-info','App\Http\Controllers\UserInfo@index');
+Route::get('resident-detail/{id}','App\Http\Controllers\UserInfo@profile');
+Route::get('resident-profile','App\Http\Controllers\UserInfo@details');
+Route::get('resident-find/{lp}','App\Http\Controllers\UserInfo@find');
+
+
+
+
+
+
+
 
 
 

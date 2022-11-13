@@ -10,7 +10,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="card mb-4 box-shadow news-box">
                         <img class="card-img-top img-thumbnail border " src="{{asset('/storage/'.$announcement->image)}}" style="height: 8rem;" alt="Card image cap">
-                        <div class="card-body">
+                        <div class="card-body " style="height: 150px;">
                             <p class="card-text font-weight-bold">{{$announcement->title}}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">

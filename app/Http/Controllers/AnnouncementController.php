@@ -10,12 +10,12 @@ class AnnouncementController extends Controller
     public function index()
     {
 
-        $announcements = DB::select('select * from announcement ORDER BY timestamp DESC ');
+        $announcements = DB::select('select * from announcement ORDER BY timestamp DESC LIMIT 3 ');
         return view('admin.admin-announcement')->with('announcements',$announcements);
     }
     public function res_index()
     {
-        $announcements = DB::select('select * from announcement ORDER BY timestamp DESC ');
+        $announcements = DB::select('select * from announcement ORDER BY timestamp DESC LIMIT 6 ');
         return view('resident.announcement-resident')->with('announcements',$announcements);
 
     }

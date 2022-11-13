@@ -83,7 +83,7 @@
 
 <div class="container pt-5">
     <div class="pb-3">
-        <span class="badge badge-info " style="font-size: 1.2rem;"> Past announcements</span>
+        <span class="badge badge-info " style="font-size: 1.2rem;"> Latest Announcements</span>
     </div>
     <div class="row">
         @foreach($announcements as $announcement)
@@ -92,7 +92,7 @@
                 <div class="card mb-4 box-shadow news-box">
                     <img class="card-img-top img-thumbnail border " src="{{asset('/storage/'.$announcement->image)}}" style="height: 8rem;" alt="Card image cap">
                     <div class="card-body" style="height: 150px;">
-                        <p class="card-text">{{$announcement->title}}</p>
+                        <p class="card-text font-weight-bold">{{$announcement->title}}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group mt-4">
                                 <a href="admin_view/{{$announcement->announcement_id}}"><button  type="button" class="btn btn-sm btn-outline-primary">View</button>
@@ -129,7 +129,8 @@
 
     @endisset
 
-    <div>
+    <div class="container" style="height: 300px;">
+       <a href="archive"><button class="btn btn-info">Archived</button></a>
 
 
     </div>
