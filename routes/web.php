@@ -22,9 +22,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('dashboard','App\Http\Controllers\HomeController@dash');
+//    Route::get('/dashboard', function () {
+//        return view('dashboard');
+//    })->name('dashboard');
 });
 
 //Route::group(['middleware' => ['auth']], function() {
@@ -66,6 +67,7 @@ Route::get('edit_announcement/{announcement_id}','App\Http\Controllers\Announcem
 Route::post('save_annedit/{announcement_id}','App\Http\Controllers\AnnouncementController@save_news');
 Route::post('anndelete/{announcement_id}','App\Http\Controllers\AnnouncementController@deleteann');
 Route::get('anndeletefetch/{announcement_id}','App\Http\Controllers\AnnouncementController@deleteannfetch');
+Route::get('archive','App\Http\Controllers\AnnouncementController@archive');
 
 
 //history

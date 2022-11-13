@@ -4,14 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+
 
 class AnnouncementController extends Controller
 {
     public function index()
     {
+        $role = Auth::user()->role;
 
-        $announcements = DB::select('select * from announcement ORDER BY timestamp DESC LIMIT 3 ');
-        return view('admin.admin-announcement')->with('announcements',$announcements);
+        if ($role == 1)
+        {
+            $announcements = DB::select('select * from announcement ORDER BY timestamp DESC LIMIT 3 ');
+            return view('admin.admin-announcement')->with('announcements',$announcements);
+
+        }
+        else
+        {
+            return Redirect::back();
+        }
+
+
     }
     public function res_index()
     {
@@ -71,9 +85,20 @@ class AnnouncementController extends Controller
 
     public function edit_announcement($announcement_id)
     {
-        $ann_edits = DB::select('select * from announcement where announcement_id = ?',[$announcement_id]);
-        $announcements = DB::select('select * from announcement ORDER BY timestamp DESC ');
-        return view('admin.edit-announcement',compact('ann_edits','announcements'));
+        $role = Auth::user()->role;
+
+        if ($role == 1)
+        {
+            $ann_edits = DB::select('select * from announcement where announcement_id = ?',[$announcement_id]);
+            $announcements = DB::select('select * from announcement ORDER BY timestamp DESC LIMIT 3');
+            return view('admin.edit-announcement',compact('ann_edits','announcements'));
+
+        }
+        else
+        {
+            return Redirect::back();
+        }
+
 
     }
 
@@ -99,12 +124,23 @@ class AnnouncementController extends Controller
     }
     public function deleteannfetch($announcement_id)
     {
+        $role = Auth::user()->role;
+
+        if ($role == 1)
+        {
+            $deleteinfos=DB::select('select * from announcement where announcement_id = ?',[$announcement_id]);
+            $announcements = DB::select('select * from announcement ORDER BY timestamp DESC ');
+
+            return view('admin.delete-announcement',compact('deleteinfos','announcements'));
+
+        }
+        else
+        {
+            return Redirect::back();
+        }
 
 
-        $deleteinfos=DB::select('select * from announcement where announcement_id = ?',[$announcement_id]);
-        $announcements = DB::select('select * from announcement ORDER BY timestamp DESC ');
 
-        return view('admin.delete-announcement',compact('deleteinfos','announcements'));
 
 
     }
@@ -112,10 +148,29 @@ class AnnouncementController extends Controller
 
     public function deleteann($announcement_id)
     {
+        $role = Auth::user()->role;
 
-        DB::delete('delete from announcement where announcement_id = ?',[$announcement_id]);
-        return redirect('announcement-admin');
+        if ($role == 1)
+        {
+            DB::delete('delete from announcement where announcement_id = ?',[$announcement_id]);
+            return redirect('announcement-admin');
+
+        }
+        else
+        {
+            return Redirect::back();
+        }
+
+
     }
+
+    public function archive()
+    {
+        $announcements = DB::select('select * from announcement ORDER BY timestamp DESC');
+        return view('admin.archive')->with('announcements',$announcements);
+
+    }
+
 
 
 

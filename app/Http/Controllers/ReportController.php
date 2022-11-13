@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Barriergate;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Dompdf\Dompdf;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\User;
 use App\Models\RegisteredVehicle;
+use Illuminate\Support\Facades\Redirect;
 use Spatie\Browsershot\Browsershot;
 
 
@@ -80,7 +82,18 @@ class ReportController extends Controller
 
     public function index()
     {
-        return view('admin.report');
+        $role = Auth::user()->role;
+
+        if($role == 1)
+        {
+            return view('admin.report');
+
+        }
+        else
+        {
+            return Redirect::back();
+        }
+
 
     }
 

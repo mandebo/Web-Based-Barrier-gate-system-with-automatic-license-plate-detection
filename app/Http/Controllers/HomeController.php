@@ -25,12 +25,20 @@ class HomeController extends Controller
             return redirect('monitor');
         }
         else{
-            $announcements = DB::select('select * from announcement ORDER BY timestamp DESC ');
+            $announcements = DB::select('select * from announcement ORDER BY timestamp DESC LIMIT 6 ');
             return view('resident.announcement-resident')->with('announcements',$announcements);
 
         }
 
     }
+
+    public function dash()
+    {
+
+       return redirect('redirects');
+
+    }
+
 
     public function register()
     {

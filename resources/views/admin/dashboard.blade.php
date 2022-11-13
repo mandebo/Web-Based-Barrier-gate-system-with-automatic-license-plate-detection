@@ -252,6 +252,7 @@
 @yield('delete_announcement')
 @yield('resident_info')
 @yield('resident-profile')
+@yield('archive')
 
 
 <script>
