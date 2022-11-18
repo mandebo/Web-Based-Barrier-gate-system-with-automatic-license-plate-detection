@@ -18,26 +18,23 @@
         </style>
 
         <style>
-            body {
+            body:not(.navigation) {
                 font-family: 'Nunito', sans-serif;
+
+
             }
         </style>
-    </head>
-    <body class="antialiased">
+        <nav class="bg-primary  navigation-home navigation">
+            <div class="container-fluid ">
+                <div class="row justify-content-end">
+                    <div class="col-md-10 col-sm-10 col-10" style="margin-top: 5px;">
+                        <i class="bx bx-menu menu-icon pr-2 font-size d-lg-none d-sm-inline d-md-inline" style="color: white"></i>
+                        <span class="logo-name font-weight-bold font-size" style="color: white; padding-top: 5px;" >EasyPark</span>
 
-    <nav class="bg-primary border navigation-home ">
-        <div class="container-fluid ">
-            <div class="row justify-content-end">
-                <div class="col-md-10 col-sm-10 col-10" style="margin-top: 5px;">
-                    <i class="bx bx-menu menu-icon pr-2 font-size d-lg-none d-sm-inline d-md-inline" style="color: white"></i>
-                    <span class="logo-name font-weight-bold font-size" style="color: white; padding-top: 5px;" >EasyPark</span>
-
-                </div>
+                    </div>
 
 
-                <div class="col-md-2 col-sm-2 col-2">
-
-
+                    <div class="col-md-2 col-sm-2 col-2">
                         <div class="relative flex items-top justify-center   sm:items-center py-4 sm:pt-0">
                             @if (Route::has('login'))
                                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
@@ -59,36 +56,22 @@
                                     @endauth
                                 </div>
                             @endif
-
+                        </div>
+                    </div>
 
                 </div>
             </div>
+        </nav>
+    </head>
+    <body class="  " style="">
+            <div class="landing" style="height: 721px;width: 100%;background-image: url('{{ asset('../landingimage/landing_page.jpg')}}');">
 
-        </div>
+                <h3 style="color: white;"> No more Access Cards</h3>
 
-
-
-{{--        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">--}}
-{{--            @if (Route::has('login'))--}}
-{{--                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">--}}
-{{--                    @auth--}}
-{{--                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>--}}
-{{--                    @else--}}
-{{--                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>--}}
-
-{{--                        @if (Route::has('register'))--}}
-{{--                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>--}}
-{{--                        @endif--}}
-{{--                    @endauth--}}
-{{--                </div>--}}
-{{--            @endif--}}
+            </div>
 
 
-{{--                </div>--}}
 
-
-{{--            </div>--}}
-{{--        </div>--}}
 
     </body>
 </html>

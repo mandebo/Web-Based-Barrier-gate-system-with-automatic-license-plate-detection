@@ -221,6 +221,28 @@ nav.open ~ .overlay {
 
 /* The navigation menu links */
 
+.landing
+{
+    /*min-height: 100%;*/
+    /*min-width: 100%;*/
+
+
+
+
+
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position-y: -200px;
+    filter: brightness(40%);
+
+
+
+
+
+}
+
 
 .sidenav .sidebar-content
 {

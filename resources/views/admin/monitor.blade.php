@@ -30,8 +30,8 @@
                         <tbody>
                         <td></td>
                         <td></td>
+                        <td class="text-danger text-center">No Records </td>
                         <td > </td>
-                        <td class="text-danger text-center">No records </td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -48,7 +48,7 @@
                                     <tr id="">
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $bg_record -> lp}}</td>
-                                        <td> PASS</td>
+                                        <td style="color: green;"> PASS</td>
                                         <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('h:i:s')}}</td>
                                         <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('d-m-Y')}}</td>
                                         <td style="color: forestgreen">IN</td>
@@ -60,7 +60,7 @@
                                     <tr id="">
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $bg_record -> lp}}</td>
-                                        <td> PASS</td>
+                                        <td style="color: green;"> PASS</td>
                                         <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('h:i:s')}}</td>
                                         <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('d-m-Y')}}</td>
                                         <td style="color: red">OUT</td>

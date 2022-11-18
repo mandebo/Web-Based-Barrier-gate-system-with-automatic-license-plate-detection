@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <h1 style="font-weight: bold;font-size: 3rem;color: dodgerblue;">EasyPark</h1>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -30,13 +30,25 @@
             </div>
             <div class="mt-4">
                 <x-jet-label for="phone_number" value="{{ __('Phone number') }}"  />
-                <x-jet-input id="phone_number" class="block mt-1 w-full" type="text" name="phone_number" required  />
+                <x-jet-input id="phone_number" class="block mt-1 w-full" type="text" name="phone_number" required onkeypress="return isNumber(event)" />
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="room_no" value="{{ __('Room number') }}" />
-                <x-jet-input id="room_no" class="block mt-1 w-full" type="text" name="room_no" required  />
+                <x-jet-input id="room_no" class="block mt-1 w-full" type="text" name="room_no" required  onkeypress="return isNumber(event)"/>
             </div>
+
+            <script>
+                function isNumber(evt) {
+                    evt = (evt) ? evt : window.event;
+                    var charCode = (evt.which) ? evt.which : evt.keyCode;
+                    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
+
 
 
 
@@ -65,7 +77,7 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-jet-button class="ml-4">
+                <x-jet-button class="ml-4" style="background-color: dodgerblue;">
                     {{ __('Register') }}
                 </x-jet-button>
             </div>
