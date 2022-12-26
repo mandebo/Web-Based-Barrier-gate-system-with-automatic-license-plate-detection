@@ -25,6 +25,8 @@ class HomeController extends Controller
             return redirect('monitor');
         }
         else{
+
+//            return view('dashboard');
             $announcements = DB::select('select * from announcement ORDER BY timestamp DESC LIMIT 6 ');
             return view('resident.announcement-resident')->with('announcements',$announcements);
 
@@ -58,9 +60,6 @@ class HomeController extends Controller
             'model' => 'required'
 
         ]);
-
-
-
 
         $user_id= Auth::user()->id;
         $licenseplate = strtoupper($request->input('licenseplate')); //input is according to name in form

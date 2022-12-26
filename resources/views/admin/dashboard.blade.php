@@ -148,6 +148,7 @@
                     </a>
                 </li>
 
+
                 <li class="list">
 
                     <a href="{{ url('logouts') }}" class="nav-link">
@@ -195,6 +196,12 @@
                 <a href="{{ url('report') }}" class="nav-link">
                     <i class="bx bx-receipt icon"></i>
                     <span class="link">Generate access report</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="{{ url('admin-feedback') }}" class="nav-link">
+                    <i class="bx bx-message-alt-error icon"></i>
+                    <span class="link">Feedbacks</span>
                 </a>
             </li>
 
@@ -253,6 +260,8 @@
 @yield('resident_info')
 @yield('resident-profile')
 @yield('archive')
+@yield('adminfeedback')
+@yield('fb-view')
 
 
 <script>

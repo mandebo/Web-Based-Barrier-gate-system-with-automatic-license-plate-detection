@@ -76,10 +76,10 @@ class UserInfo extends Controller
         if ($role == 1)
         {
             $userid = DB::select('select user_id from registered_vehicle where lp = ?',[$lp]);
-//        $data= $userid[0]['user_id'];
             $data = json_encode($userid, true);
 
-            $dete = $data[12];
+            $dete = $data[12].$data[13];
+
             $profiles = DB::select('select * from users where id = ?',[$dete]);
             $cars = DB::select('select * from registered_vehicle where user_id = ?',[$dete]);
             return view('admin.resident-detail',compact('profiles','cars'));

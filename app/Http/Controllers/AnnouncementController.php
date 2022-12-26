@@ -43,6 +43,7 @@ class AnnouncementController extends Controller
 
         ]);
 
+
         $content = $request->input('content');
         $title = $request ->input('title');
         $image = $request -> file('image');
@@ -129,7 +130,7 @@ class AnnouncementController extends Controller
         if ($role == 1)
         {
             $deleteinfos=DB::select('select * from announcement where announcement_id = ?',[$announcement_id]);
-            $announcements = DB::select('select * from announcement ORDER BY timestamp DESC ');
+            $announcements = DB::select('select * from announcement ORDER BY timestamp DESC LIMIT 3 ');
 
             return view('admin.delete-announcement',compact('deleteinfos','announcements'));
 

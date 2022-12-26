@@ -103,8 +103,9 @@
                     </a>
                 </li>
                 <li class="list">
-                    <a href="#" class="nav-link">
-                        <i class="bx bx-bell icon"></i>
+                    <a href="{{ url('feedback') }}" class="nav-link">
+
+                    <i class="bx bx-bell icon"></i>
                         <span class="link">Feedback</span>
                     </a>
                 </li>
@@ -147,7 +148,7 @@
                 </a>
             </li>
             <li class="list">
-                <a href="#" class="nav-link">
+                <a href="{{ url('feedback') }}" class="nav-link">
                     <i class="bx bx-message-dots icon"></i>
                     <span class="link">Feedback</span>
                 </a>
@@ -193,6 +194,7 @@
 @yield('registeredit')
 @yield('register-delete')
 @yield('history')
+@yield('feedback')
 
 
 {{--End of License plate registration--}}

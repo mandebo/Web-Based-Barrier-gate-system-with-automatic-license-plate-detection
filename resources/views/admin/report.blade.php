@@ -66,7 +66,7 @@
                         <ul class="list-group mt-5">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Date:
-                                <span class="badge badge-primary badge-pill">{{date('d/m/Y')}}</span>
+                                <span class="badge badge-primary badge-pill">{{$date}}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Total vehicle detected:
@@ -101,6 +101,8 @@
                             <th>Status</th>
                             <th>Timestamp</th>
                             <th>Date</th>
+                            <th></th>
+                            <th></th>
 
                         </tr>
                         </thead>
@@ -108,22 +110,42 @@
                         @foreach($report_records as $report_record)
 
                             @if($report_record -> status == 1)
-                                <tr id="">
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $report_record -> lp}}</td>
-                                    <td class="pass"> PASS</td>
-                                    <td>{{  Carbon\Carbon::parse($report_record->timestamp)->format('h:i:s')}}</td>
-                                    <td>{{  Carbon\Carbon::parse($report_record->timestamp)->format('d-m-Y')}}</td>
-                                </tr>
+                                @if($report_record -> carway ==0)
+                                    <tr id="">
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $report_record -> lp}}</td>
+                                        <td style="color: green;"> PASS</td>
+                                        <td>{{  Carbon\Carbon::parse($report_record->timestamp)->format('h:i:s')}}</td>
+                                        <td>{{  Carbon\Carbon::parse($report_record->timestamp)->format('d-m-Y')}}</td>
+                                        <td style="color: forestgreen">IN</td>
+                                        <td><a href="resident-find/{{ $report_record->lp }}"><button title="find resident" class=" btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><g transform="translate(512 0) scale(-1 1)"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128c0-70.7 57.2-128 128-128c70.7 0 128 57.2 128 128c0 70.7-57.2 128-128 128z"/></g></svg></button></a></td>
+                                        {{--                                        <td><button class="btn btn-primary"></button></td>--}}
+
+                                    </tr>
+                                @else
+                                    <tr id="">
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $report_record -> lp}}</td>
+                                        <td style="color: green;"> PASS</td>
+                                        <td>{{  Carbon\Carbon::parse($report_record->timestamp)->format('h:i:s')}}</td>
+                                        <td>{{  Carbon\Carbon::parse($report_record->timestamp)->format('d-m-Y')}}</td>
+                                        <td style="color: red">OUT</td>
+                                        <td><a href="resident-find/{{ $report_record->lp }}"><button title="find resident" class=" btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><g transform="translate(512 0) scale(-1 1)"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128c0-70.7 57.2-128 128-128c70.7 0 128 57.2 128 128c0 70.7-57.2 128-128 128z"/></g></svg></button></a></td>
+
+                                    </tr>
+                                @endif
+
 
                             @else
                                 <tr id="">
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $report_record -> lp}}</td>
-                                    <td class="failed"> FAILED</td>
+                                    <td> FAILED</td>
 
                                     <td>{{  Carbon\Carbon::parse($report_record->timestamp)->format('h:i:s')}}</td>
                                     <td>{{  Carbon\Carbon::parse($report_record->timestamp)->format('d-m-Y')}}</td>
+                                    <td style="color: darkred">UNREGISTERED</td>
+                                    <td style="color: red;"><button class="btn" style="background-color: transparent; "> -</button></td>
                                 </tr>
 
                             @endif
@@ -188,6 +210,31 @@
         today = yyyy + '-' + mm + '-' + dd;
         document.getElementById("datefield").setAttribute("max", today);
     </script>
+
+{{--    <script>--}}
+{{--        function htmlcanvas()--}}
+{{--        {--}}
+{{--            var pdf = new jsPDF();--}}
+
+{{--// Select the div that you want to convert to PDF--}}
+{{--            var div = document.querySelector('#capture');--}}
+
+{{--// Use the html method to add the contents of the div to the PDF--}}
+
+{{--            --}}
+{{--            pdf.fromHtml(div, {--}}
+{{--                // Set the x and y coordinates where the div should be placed on the PDF--}}
+{{--                x: 10,--}}
+{{--                y: 10--}}
+{{--            });--}}
+
+{{--// Save the PDF--}}
+{{--            pdf.save('my-pdf.pdf');--}}
+
+
+{{--        }--}}
+
+{{--    </script>--}}
 
 
     <script>

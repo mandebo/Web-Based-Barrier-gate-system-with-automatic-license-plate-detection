@@ -82,6 +82,17 @@ Route::get('resident-detail/{id}','App\Http\Controllers\UserInfo@profile');
 Route::get('resident-profile','App\Http\Controllers\UserInfo@details');
 Route::get('resident-find/{lp}','App\Http\Controllers\UserInfo@find');
 
+//feedback route
+
+Route::get('feedback','App\Http\Controllers\Feedback@index');
+Route::post('add-feedback','App\Http\Controllers\Feedback@add');
+Route::get('admin-feedback','App\Http\Controllers\Feedback@admin');
+Route::get('adview/{id}/{user_id}','App\Http\Controllers\Feedback@adview');
+Route::post('check/{id}','App\Http\Controllers\Feedback@check');
+Route::post('respond/{id}','App\Http\Controllers\Feedback@respond');
+
+
+
 
 
 

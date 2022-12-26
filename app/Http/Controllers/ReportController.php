@@ -104,6 +104,7 @@ class ReportController extends Controller
         $date= $request->datepick;
         $today = date('Y-m-d');
 
+
         $report_records = DB::select('select * from barriergate where DATE(timestamp) = ?',[$date]);
         $count_records = count(DB::select('select * from barriergate where DATE(timestamp) = ?',[$date]));
         $pass = count(DB::select('select * from barriergate where status = 1 and date(timestamp) =?',[$date]));
@@ -112,7 +113,7 @@ class ReportController extends Controller
 
 
 
-        return view('admin.report', compact('report_records','pass','fail','count_records'));
+        return view('admin.report', compact('report_records','pass','fail','count_records','date'));
 
 
     }
