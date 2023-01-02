@@ -22,15 +22,65 @@ class HomeController extends Controller
 
         if($role =='1')
         {
-            return redirect('monitor');
+            $today = date('Y-m-d');
+            $check = DB::select('select id from visitor WHERE DATE(dateto) <  ?', [$today]);
+
+
+
+
+
+
+            if ($check == null)
+            {
+                return redirect('monitor');
+
+            }
+            else
+            {
+                $visitid = json_encode($check, true);
+
+                $visitor = $visitid[7];
+                DB::delete('delete from visitor where id = ?',[$visitor]);
+                return redirect('monitor');
+
+            }
+
         }
         else{
+            $today = date('Y-m-d');
+            $check = DB::select('select id from visitor WHERE DATE(dateto) <  ?', [$today]);
+
+
+
+            if ($check == null)
+            {
+                $announcements = DB::select('select * from announcement ORDER BY timestamp DESC LIMIT 6 ');
+                return view('resident.announcement-resident')->with('announcements',$announcements);
+
+            }
+            else
+            {
+                $visitid = json_encode($check, true);
+
+                $visitor = $visitid[7];
+                DB::delete('delete from visitor where id = ?',[$visitor]);
+                $announcements = DB::select('select * from announcement ORDER BY timestamp DESC LIMIT 6 ');
+                return view('resident.announcement-resident')->with('announcements',$announcements);
+
+
+            }
 
 //            return view('dashboard');
-            $announcements = DB::select('select * from announcement ORDER BY timestamp DESC LIMIT 6 ');
-            return view('resident.announcement-resident')->with('announcements',$announcements);
+
+
 
         }
+
+    }
+
+    public function visitdelete()
+    {
+
 
     }
 

@@ -1,6 +1,48 @@
 @extends('dashboard')
 
 @section('feedback')
+    @if(Session::get('feedbacksuccess'))
+        {{--        <div class="container">--}}
+        {{--            <h1 style="margin-top: 100px;"> {{ Session::get('registered') }}</h1>--}}
+        {{--        </div>--}}
+
+        <script>
+            Swal.fire({
+
+                icon: 'success',
+                title: 'Success!',
+                text: 'We notified the admin about your feedbacks!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+
+
+
+    @endif
+
+    @if(Session::get('deleted'))
+
+        <script>
+            Swal.fire({
+
+                icon: 'success',
+                title: 'Success!',
+                text: "Feedback deleted succesfully",
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+
+
+
+    @endif
+
+
+
+
+
+
 
     <div class="container  p-5" style="margin-top: 70px">
 {{--        First card--}}
@@ -12,16 +54,16 @@
 
             <div class="card-body">
 
-                <form action="{{ url('add-feedback') }}" method="post" enctype="multipart/form-data" class="mb-2">
+                <form id="fbform" action="{{ url('add-feedback') }}" method="post" enctype="multipart/form-data" class="mb-2">
                     @csrf
                     <div class="form-group">
                                 <label for="exampleFormControlInput1" >Title</label>
-                                <input  class="form-control" name="title" placeholder="example title">
+                                <input  class="form-control" id="title" name="title" placeholder="example title">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Description</label>
-                                <textarea class="form-control" name="description" rows="3" placeholder=""></textarea>
+                                <textarea maxlength="200" class="form-control" id="description" name="description" rows="3" placeholder=""></textarea>
                             </div>
 
                             <div class="row justify-content-end">
@@ -31,7 +73,7 @@
 
                                 </div>
                                 <div class="col-lg-2 ">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button onclick="showAlert()" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                   </div>
@@ -65,19 +107,33 @@
                                 <td>{{  Carbon\Carbon::parse($feedback->timestamp)->format('h:i:s')}}</td>
 
                                 @if($feedback->status == "0")
-                                    <td><button type="button" class="btn btn-info">Pending</button>
+                                    <td>
+                                        <form action="{{ url( 'res-fb', $feedback->id) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-info" style="font-size: 12px;">Pending</button>
+                                        </form>
+
                                     </td>
 
                                 @else
-                                    <td><button type="button" class="btn btn-success">Checked</button>
+                                    <td>
+                                        <form action="{{ url( 'res-fb', $feedback->id) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-success" style="font-size: 12px;">Checked</button>
+                                        </form>
                                     </td>
 
                                 @endif
 
 
-                                <td>  <a  class=""><button onclick="" type="button" class="btn btn-danger btn-size ">
-                                            <svg class="" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><path fill="currentColor" d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/></svg>
-                                        </button></a></td>
+                                <td>
+                                    <form class="pr-1" action="{{ url('deletefb',$feedback->id) }}" id="deleteForm" method="post">
+                                        @csrf
+                                        <a  href="fbdelete/{{ $feedback->id }}" class=""><button  style="font-size: 12px;" type="button" class="btn btn-danger btn-size ">
+                                                <svg class="" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><path fill="currentColor" d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/></svg>
+                                            </button></a>
+
+                                    </form></td>
 
                             </tr>
                     @endforeach
@@ -92,6 +148,39 @@
 
 
         </div>
+
+    <script>
+        function showAlert()
+        {
+
+
+            // var dups = document.getElementById("recordlp").value;
+            // alert(dups);
+            var lp = document.getElementById("title").value;
+            var model = document.getElementById("description").value;
+
+            event.preventDefault();
+
+            if(lp == '' || model == '' )
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter both field'
+
+                })
+            }
+
+            else
+            {
+                    document.getElementById('fbform').submit();
+
+            }
+        }
+
+    </script>
+
+
 
 
 @endsection

@@ -90,6 +90,28 @@ Route::get('admin-feedback','App\Http\Controllers\Feedback@admin');
 Route::get('adview/{id}/{user_id}','App\Http\Controllers\Feedback@adview');
 Route::post('check/{id}','App\Http\Controllers\Feedback@check');
 Route::post('respond/{id}','App\Http\Controllers\Feedback@respond');
+Route::post('res-fb/{id}','App\Http\Controllers\Feedback@residentview');
+Route::post('deletefb/{id}','App\Http\Controllers\Feedback@deletefb');
+Route::get('pending','App\Http\Controllers\Feedback@pendpage');
+Route::get('checking','App\Http\Controllers\Feedback@checkpage');
+Route::get('fbdelete/{id}','App\Http\Controllers\Feedback@fbdelete');
+Route::post('fbgone/{id}','App\Http\Controllers\Feedback@fbgone');
+
+
+
+// Black list route
+Route::get('blacklist','App\Http\Controllers\BlacklistController@index');
+Route::post('addbl','App\Http\Controllers\BlacklistController@addbl');
+
+//visitor
+
+Route::get('visitor','App\Http\Controllers\VisitorController@index');
+Route::post('addv','App\Http\Controllers\VisitorController@addv');
+
+
+
+
+
 
 
 

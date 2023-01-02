@@ -22,7 +22,9 @@
 
             <textarea id="content" name="content"> </textarea>
             <div class="mb-3">
-                <input name="image" class="form-control file-form pr-2" type="file" id="formFile">
+                <input name="image" id="image" class="form-control file-form pr-2" type="file" id="formFile">
+{{--                <label for="image" >Choose a file</label>--}}
+
             </div>
 
             <button type="button" onclick="showAlert()" class="btn btn-info btn-md">Publish</button>

@@ -195,6 +195,7 @@
 @yield('register-delete')
 @yield('history')
 @yield('feedback')
+@yield('res-fb')
 
 
 {{--End of License plate registration--}}

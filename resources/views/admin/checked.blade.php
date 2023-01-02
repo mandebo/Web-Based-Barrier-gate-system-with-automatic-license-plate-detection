@@ -1,15 +1,14 @@
 @extends('admin.dashboard')
 
-@section('adminfeedback')
-
+@section('checked')
     <div class="container border rounded  p-3" style="margin-top: 50px; box-shadow: 2px 2px lightblue;">
         <div class="row">
             <div class="col-lg-1">
-                <a href="admin-feedback">All</a>
+                <a href="admin-feedback" style="color: gray;">All</a>
 
             </div>
             <div class="col-lg-1">
-                @if($countpend > 0)
+                    @if($countpend > 0)
                     <a style="color: gray;" href="pending" class="notification">Pending
 
                         <span class="badge">
@@ -17,23 +16,23 @@
                         {{ $countpend }}
                         </span></a>
 
-                @else
+                     @else
                     <a style="color: gray;" href="pending" >Pending
 
                     </a>
 
-                @endif
+                     @endif
 
             </div>
             <div class="col-lg-1">
-                <a href="checking" style="color: gray;">Checked</a>
+                <a href="checking">Checked</a>
 
             </div>
         </div>
     </div>
 
-    <div class="container rounded  p-3 border" style="margin-top: 20px;box-shadow: 2px 2px lightblue;">
-        <table id="data-table2" class="table">
+    <div class="container rounded p-3  border" style="margin-top: 20px;box-shadow: 2px 2px lightblue;">
+        <table class="table " id="data-table2">
             <thead>
             <tr>
                 <th scope="col">No</th>
@@ -49,22 +48,22 @@
             </thead>
             <tbody>
 
-            @isset($feedbacks)
+            @isset($checked)
 
-                @foreach($feedbacks as $feedback)
+                @foreach($checked as $c)
 
-                    @if($feedback->status == "0")
+                    @if($c->status == "0")
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $feedback->title }}</td>
-                            <td>{{ $feedback->name }}</td>
+                            <td>{{ $c->title }}</td>
+                            <td>{{ $c->name }}</td>
 
-                            <td>{{  Carbon\Carbon::parse($feedback->timestamp)->format('d-m-Y')}}</td>
-                            <td>{{  Carbon\Carbon::parse($feedback->timestamp)->format('h:i:s')}}</td>
+                            <td>{{  Carbon\Carbon::parse($c->timestamp)->format('d-m-Y')}}</td>
+                            <td>{{  Carbon\Carbon::parse($c->timestamp)->format('h:i:s')}}</td>
                             <td><button type="button" class="btn btn-info" style="font-size: 12px;">Pending</button>
                             </td>
                             <td>
-                                <form class="pr-1" action="{{ url('adview',[$feedback->id,$feedback->user_id]) }}" method="get">
+                                <form class="pr-1" action="{{ url('adview',[$c->id,$pend->user_id]) }}" method="get">
                                     @csrf
                                     <button type="submit" class="btn btn-primary" style="font-size: 12px;">view</button>
                                 </form>
@@ -77,15 +76,15 @@
                     @else
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $feedback->title }}</td>
-                            <td>{{ $feedback->name }}</td>
+                            <td>{{ $c->title }}</td>
+                            <td>{{ $c->name }}</td>
 
-                            <td>{{  Carbon\Carbon::parse($feedback->timestamp)->format('d-m-Y')}}</td>
-                            <td>{{  Carbon\Carbon::parse($feedback->timestamp)->format('h:i:s')}}</td>
+                            <td>{{  Carbon\Carbon::parse($c->timestamp)->format('d-m-Y')}}</td>
+                            <td>{{  Carbon\Carbon::parse($c->timestamp)->format('h:i:s')}}</td>
                             <td><button type="button" class="btn btn-success" style="font-size: 12px;">Checked</button>
                             </td>
                             <td>
-                                <form class="pr-1" action="{{ url('adview',[$feedback->id,$feedback->user_id]) }}" method="get">
+                                <form class="pr-1" action="{{ url('adview',[$c->id,$c->user_id]) }}" method="get">
                                     @csrf
                                     <button type="submit" class="btn btn-primary" style="font-size: 12px;">view</button>
                                 </form>
@@ -107,10 +106,6 @@
         </table>
 
     </div>
-
-
-
-
 
 
 @endsection

@@ -187,8 +187,8 @@
             </li>
 
             <li class="list">
-                <a href="#" class="nav-link">
-                    <i class="bx bx-bell icon"></i>
+                <a href="blacklist" class="nav-link">
+                    <i class="bx  bx-no-entry icon"></i>
                     <span class="link">Alert and blacklist</span>
                 </a>
             </li>
@@ -202,6 +202,12 @@
                 <a href="{{ url('admin-feedback') }}" class="nav-link">
                     <i class="bx bx-message-alt-error icon"></i>
                     <span class="link">Feedbacks</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="{{ url('visitor') }}" class="nav-link">
+                    <i class="bx bx-user-plus icon"></i>
+                    <span class="link">Manage visitors</span>
                 </a>
             </li>
 
@@ -262,6 +268,10 @@
 @yield('archive')
 @yield('adminfeedback')
 @yield('fb-view')
+@yield('pending')
+@yield('checked')
+@yield('blacklist')
+@yield('visitor')
 
 
 <script>

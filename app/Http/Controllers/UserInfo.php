@@ -38,11 +38,16 @@ class UserInfo extends Controller
     {
         $role = Auth::user()->role;
 
+
         if ($role == 1)
         {
             $profiles = DB::select('select * from users where id = ?',[$id]);
             $cars = DB::select('select * from registered_vehicle where user_id = ?',[$id]);
-            return view('admin.resident-detail',compact('profiles','cars'));
+
+            $visitor = DB::select('select * from visitor where owner = ?',[$id]);
+            $count = count($visitor);
+            $count2 = count($cars);
+            return view('admin.resident-detail',compact('profiles','cars','visitor','count','count2'));
 
         }
         else
@@ -80,6 +85,7 @@ class UserInfo extends Controller
 
             $dete = $data[12].$data[13];
 
+            $visitor = DB::select('select * from visitor where owner = ?',[$dete]);
             $profiles = DB::select('select * from users where id = ?',[$dete]);
             $cars = DB::select('select * from registered_vehicle where user_id = ?',[$dete]);
             return view('admin.resident-detail',compact('profiles','cars'));

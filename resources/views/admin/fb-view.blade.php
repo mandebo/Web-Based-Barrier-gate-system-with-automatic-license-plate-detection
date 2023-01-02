@@ -1,6 +1,42 @@
 @extends('admin.dashboard')
 
 @section('fb-view')
+    @if(Session::get('checked'))
+        {{--        <div class="container">--}}
+        {{--            <h1 style="margin-top: 100px;"> {{ Session::get('registered') }}</h1>--}}
+        {{--        </div>--}}
+
+        <script>
+            Swal.fire({
+
+                icon: 'success',
+                title: 'Marked as checked!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+
+
+
+    @endif
+    @if(Session::get('respond'))
+        {{--        <div class="container">--}}
+        {{--            <h1 style="margin-top: 100px;"> {{ Session::get('registered') }}</h1>--}}
+        {{--        </div>--}}
+
+        <script>
+            Swal.fire({
+
+                icon: 'success',
+                title: 'Response added!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+
+
+
+    @endif
 
     <div class="container border rounded p-3" style="margin-top: 50px;box-shadow: 2px 2px lightblue;">
         <div class="row justify-content-end">
@@ -76,10 +112,10 @@
     <div class="container border rounded p-3" style="margin-top: 25px;box-shadow: 2px 2px lightblue;">
         <div class="row">
             @foreach($feedbacks as $feedback)
-                <div class="container col-lg-6 ">
-                    <img class="card-img-top img-thumbnail  " src="{{asset('/storage/'.$feedback->picture)}}" style="height: 20rem;" alt="Card image cap">
+                <div class="container col-lg-4 ">
+                    <img class="card-img-top img-thumbnail  " src="{{asset('/storage/'.$feedback->picture)}}" style="height: 20rem; width: 20rem;" alt="Card image cap">
                 </div>
-                <div class=" container col-lg-6 border p-3" style="height: 20rem;">
+                <div class=" container col-lg-8 border p-3" style="height: 20rem;">
 
                     <div class="row">
                         <div class="col-lg-1 font-weight-bold " >
@@ -93,7 +129,7 @@
                     <div class="row " style="margin-top: 10px;">
 
                         <div class="col-lg-8 align-items-center" style="text-align: justify;">
-                            {{ $feedback->content }}
+                           <p style="word-wrap: break-word;">{{ $feedback->content }}</p>
                         </div>
                     </div>
 
@@ -106,22 +142,31 @@
         </div>
 
         <div class="row" style="margin-top: 10px;">
-            <div class="col-lg-1">
-                <form action="{{ url( 'check', $feedback->id) }}" method="post">
-                    @csrf
-                    <button type="submit" class="btn btn-success" style="margin-top: 10px;">Check</button>
+
+            @foreach($feedbacks as $feedback)
+                @if($feedback->status == 0)
+                    <div class="col-lg-1">
+                        <form action="{{ url( 'check', $feedback->id) }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-success" style="margin-top: 10px;">Check</button>
 
 
-                </form>
+                        </form>
+
+                    </div>
+                    <div class="col-lg-1" style="margin-left: 10px;">
+                        <button  id="invi" type="button" class="btn btn-primary" style="margin-top: 10px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M9 11h9v2H9v-2m9-4H6v2h12V7m4-3v18l-4-4H4a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2m-2 0H4v12h14.83L20 17.17V4Z"/></svg>
+                        </button>
+
+                    </div>
+
+                @endif
 
 
-            </div>
-            <div class="col-lg-1" style="margin-left: 10px;">
-                <button  id="invi" type="button" class="btn btn-primary" style="margin-top: 10px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M9 11h9v2H9v-2m9-4H6v2h12V7m4-3v18l-4-4H4a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2m-2 0H4v12h14.83L20 17.17V4Z"/></svg>
-                </button>
+            @endforeach
 
-            </div>
+
         </div>
 
     </div>
@@ -155,25 +200,29 @@
         </div>
 
     @foreach($feedbacks as $feedback)
-        <div id="kotak" class=" container card response" style="margin-top: 20px;box-shadow: 2px 2px lightblue;">
-            <h5 class="card-header row" >
-                <div class="col-lg-11" style="color: cornflowerblue;">
-                    Response
+        @if($feedback->status == 1)
+            <div id="kotak" class=" container card response" style="margin-top: 20px;box-shadow: 2px 2px lightblue;">
+                <h5 class="card-header row" >
+                    <div class="col-lg-11" style="color: cornflowerblue;">
+                        Response
+                    </div>
+                    <div class="col-lg-1 justify-content-end " style="font-size: 15px;">
+                        <button id="editbtn" class="btn" style="border: none;background: none; color: #007bff;"> Edit</button>
+                    </div>
+                </h5>
+                <div class="card-body">
+                    <p>
+                        {{ $feedback->respond }}
+
+                    </p>
+                    <small class="text-muted">{{  Carbon\Carbon::parse($feedback->respond_time)->format('d-m-Y')}}</small>
+
+
                 </div>
-                <div class="col-lg-1 justify-content-end " style="font-size: 15px;">
-                   <button id="editbtn" class="btn" style="border: none;background: none; color: #007bff;"> Edit</button>
-                </div>
-            </h5>
-            <div class="card-body">
-                <p>
-                    {{ $feedback->respond }}
-
-                </p>
-                <small class="text-muted">{{  Carbon\Carbon::parse($feedback->respond_time)->format('d-m-Y')}}</small>
-
-
             </div>
-        </div>
+
+
+        @endif
 
     @endforeach
 
