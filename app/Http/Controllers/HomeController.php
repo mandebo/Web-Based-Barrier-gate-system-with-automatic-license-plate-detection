@@ -26,10 +26,6 @@ class HomeController extends Controller
             $check = DB::select('select id from visitor WHERE DATE(dateto) <  ?', [$today]);
 
 
-
-
-
-
             if ($check == null)
             {
                 return redirect('monitor');
@@ -39,7 +35,7 @@ class HomeController extends Controller
             {
                 $visitid = json_encode($check, true);
 
-                $visitor = $visitid[7];
+                $visitor = $visitid[7].$visitid[8];
                 DB::delete('delete from visitor where id = ?',[$visitor]);
                 return redirect('monitor');
 
@@ -49,6 +45,7 @@ class HomeController extends Controller
         else{
             $today = date('Y-m-d');
             $check = DB::select('select id from visitor WHERE DATE(dateto) <  ?', [$today]);
+
 
 
 

@@ -197,7 +197,8 @@
                             Swal.fire({
 
                                 icon: 'success',
-                                title: 'Your record is updated',
+                                title: 'Success',
+                                text:'Your record is updated',
                                 showConfirmButton: false,
                                 timer: 1500
                             })

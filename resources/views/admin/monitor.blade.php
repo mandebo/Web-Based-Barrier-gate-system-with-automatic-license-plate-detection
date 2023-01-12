@@ -74,13 +74,14 @@
                                 <tr id="">
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $bg_record -> lp}}</td>
-                                    <td> FAILED</td>
+                                    <td style="color: red;"> FAILED</td>
 
                                     <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('h:i:s')}}</td>
                                     <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('d-m-Y')}}</td>
-                                    <td style="color: darkred">UNREGISTERED</td>
-                                    <td style="color: red;"><button class="btn" style="background-color: transparent; "> -</button></td>
-                                </tr>
+                                    <td style="color: red;">UNREGISTERED</td>
+                                    <td><a  style="font-size: 15px;"><button title="unregistered?" class=" btn btn-warning">
+                                                <svg style="color: white;" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M20.5 14.5V16H19v-1.5h1.5m-2-5H17V9a3 3 0 0 1 3-3a3 3 0 0 1 3 3c0 .97-.5 1.88-1.29 2.41l-.3.19c-.57.4-.91 1.01-.91 1.7v.2H19v-.2c0-1.19.6-2.3 1.59-2.95l.29-.19c.39-.26.62-.69.62-1.16A1.5 1.5 0 0 0 20 7.5A1.5 1.5 0 0 0 18.5 9v.5M9 13c2.67 0 8 1.34 8 4v3H1v-3c0-2.66 5.33-4 8-4m0-9a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10.9c-2.97 0-6.1 1.46-6.1 2.1v1.1h12.2V17c0-.64-3.13-2.1-6.1-2.1m0-9A2.1 2.1 0 0 0 6.9 8A2.1 2.1 0 0 0 9 10.1A2.1 2.1 0 0 0 11.1 8A2.1 2.1 0 0 0 9 5.9Z"/></svg>                                            </button></a></td>
+
 
                             @else
                                 <tr id="">
@@ -91,7 +92,7 @@
                                     <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('h:i:s')}}</td>
                                     <td>{{  Carbon\Carbon::parse($bg_record->timestamp)->format('d-m-Y')}}</td>
                                     <td style="color: darkred">BLACKLISTED</td>
-                                    <td><a href="resident-find/{{ $bg_record->lp }}"><button title="black listed!" class=" btn btn-danger">
+                                    <td><a href="blacklist"><button title="black listed!" class=" btn btn-danger">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M22.56 16.3L14.89 3.58a3.43 3.43 0 0 0-5.78 0L1.44 16.3a3 3 0 0 0-.05 3A3.37 3.37 0 0 0 4.33 21h15.34a3.37 3.37 0 0 0 2.94-1.66a3 3 0 0 0-.05-3.04Zm-1.7 2.05a1.31 1.31 0 0 1-1.19.65H4.33a1.31 1.31 0 0 1-1.19-.65a1 1 0 0 1 0-1l7.68-12.73a1.48 1.48 0 0 1 2.36 0l7.67 12.72a1 1 0 0 1 .01 1.01Z"/><circle cx="12" cy="16" r="1" fill="currentColor"/><path fill="currentColor" d="M12 8a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0V9a1 1 0 0 0-1-1Z"/></svg>
                                             </button></a></td>
 

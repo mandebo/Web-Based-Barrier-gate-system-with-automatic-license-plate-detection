@@ -95,21 +95,22 @@
                         <span class="badge badge-primary badge-pill">Registered vehicle</span>
 
                         @if($count2 > 0)
+                            <table  class="table" style=" margin-top:10px; width: 100%;">
+                                <thead>
+                                <tr style="font-size: 12px;">
+                                    <th scope="col">No</th>
+                                    <th scope="col">License Plate</th>
+                                    <th scope="col">Vehicle Model</th>
+                                    <th scope="col">Date Registered</th>
+                                    <th scope="col">Time Registered</th>
+
+
+
+                                </tr>
+                                </thead>
                             @foreach($cars as $car)
 
-                                <table  class="table" style=" margin-top:10px; width: 100%;">
-                                    <thead>
-                                    <tr style="font-size: 12px;">
-                                        <th scope="col">No</th>
-                                        <th scope="col">License Plate</th>
-                                        <th scope="col">Vehicle Model</th>
-                                        <th scope="col">Date Registered</th>
-                                        <th scope="col">Time Registered</th>
 
-
-
-                                    </tr>
-                                    </thead>
                                     <tbody>
                                     <tr style="font-size: 12px;">
                                         <td> {{ $loop->iteration }}</td>
@@ -122,9 +123,10 @@
 
                                     </tr>
                                     </tbody>
-                                </table>
+
 
                             @endforeach
+                            </table>
 
                         @else
                             <table  class="table" style=" margin-top:10px; width: 100%;">

@@ -80,15 +80,47 @@ class UserInfo extends Controller
 
         if ($role == 1)
         {
-            $userid = DB::select('select user_id from registered_vehicle where lp = ?',[$lp]);
-            $data = json_encode($userid, true);
 
-            $dete = $data[12].$data[13];
 
-            $visitor = DB::select('select * from visitor where owner = ?',[$dete]);
-            $profiles = DB::select('select * from users where id = ?',[$dete]);
-            $cars = DB::select('select * from registered_vehicle where user_id = ?',[$dete]);
-            return view('admin.resident-detail',compact('profiles','cars'));
+            $checkv = DB::select('select owner from visitor where lp = ?',[$lp]);
+
+
+
+
+            if ($checkv == null)
+            {
+                $userid = DB::select('select user_id from registered_vehicle where lp = ?',[$lp]);
+                $data = json_encode($userid, true);
+
+                $dete = $data[12].$data[13];
+                $visitor = DB::select('select * from visitor where owner = ?',[$dete]);
+                $profiles = DB::select('select * from users where id = ?',[$dete]);
+                $cars = DB::select('select * from registered_vehicle where user_id = ?',[$dete]);
+                $visitor = DB::select('select * from visitor where owner = ?',[$dete]);
+                $count = count($visitor);
+                $count2 = count($cars);
+                return view('admin.resident-detail',compact('profiles','cars','count','count2','visitor'));
+
+            }
+
+            else
+            {
+                $checkv2 = json_encode($checkv, true);
+                $dete = $checkv2[10].$checkv2[11];
+                $visitor = DB::select('select * from visitor where owner = ?',[$dete]);
+                $profiles = DB::select('select * from users where id = ?',[$dete]);
+                $cars = DB::select('select * from registered_vehicle where user_id = ?',[$dete]);
+                $visitor = DB::select('select * from visitor where owner = ?',[$dete]);
+                $count = count($visitor);
+                $count2 = count($cars);
+                return view('admin.resident-detail',compact('profiles','cars','count','count2','visitor'));
+
+
+            }
+
+
+
+
 
         }
         else

@@ -91,14 +91,13 @@
 
     </div>
 
-    <div class="container border rounded  p-3" style="margin-top: 50px; box-shadow: 2px 2px lightblue;">
-        <p> Active visitors</p>
-    </div>
 
 
 
     <div class="container rounded p-3  border" style="margin-top: 20px;box-shadow: 2px 2px lightblue;">
-        <table class="table" id="data-table2">
+        <span class="badge badge-success  badge-pill">Active visitors</span>
+
+        <table class="table pt-2" id="" style="margin-top: 5px;">
             <thead>
             <tr>
                 <th scope="col">No</th>

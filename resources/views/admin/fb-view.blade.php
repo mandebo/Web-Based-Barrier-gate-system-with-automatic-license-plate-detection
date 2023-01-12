@@ -176,22 +176,12 @@
         <div id="response" class=" container card response" style="margin-top: 20px;display: none;">
             <h5 class="card-header" style="color: cornflowerblue;">Add response</h5>
             <div class="card-body">
-                <form action="{{ url( 'respond', $feedback->id) }}" method="post">
+                <form action="{{ url( 'respond', $feedback->id) }}" id="respondForm" method="post">
                     @csrf
-                    <textarea name="respond" style="  width: 100%;
-                      height: 150px;
-                      padding: 12px 20px;
-                      box-sizing: border-box;
-                      border: 1px solid cornflowerblue;
-                      border-radius: 4px;
-                      background-color: #f8f8f8;
-                      font-size: 16px;
-                      resize: none;
-                         box-shadow: none;">
+                    <textarea placeholder="Response" id="respond" name="respond" class="form-control" id="textAreaExample" rows="4"></textarea>
 
-                    </textarea>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button onclick="showAlert()" style="margin-top: 8px;" class="btn btn-primary">Submit</button>
 
 
 
@@ -267,6 +257,34 @@
 
             }
         });
+
+    </script>
+
+    <script>
+        function showAlert()
+        {
+            var respond = document.getElementById("respond").value;
+
+            event.preventDefault();
+
+
+            if(respond == "" )
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please input all fields'
+
+                })
+            }
+
+            else
+            {
+
+                document.getElementById('respondForm').submit();
+
+            }
+        }
 
     </script>
 

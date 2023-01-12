@@ -42,7 +42,7 @@
 
     </div>
 
-        <div class="card container  "style="box-shadow: 1px 1px lightblue;" id="regiFormCont" >
+        <div class="card container  "style="box-shadow: 2px 2px lightblue;" id="regiFormCont" >
 {{--            <div class=" card-header  align-content-center" style="background: none;">--}}
 {{--               Blacklist vehicle--}}
 {{--            </div>--}}
@@ -84,28 +84,57 @@
 
         </div>
 
-    <div class="container border rounded p-2" style="background-color: #54B4D3; margin-top: 50px;box-shadow: 1px 1px lightblue;">
-        <p class="font-weight-bold" style="color: white"> Blacklisted vehicles</p>
+{{--    <div class="container border rounded p-2" style="background-color: #54B4D3; margin-top: 50px;box-shadow: 1px px lightblue;">--}}
+{{--        <p class="font-weight-bold" style="color: white"> Blacklisted vehicles</p>--}}
 
-    </div>
+{{--    </div>--}}
 
-        <table class=" container rounded table border mt-4" id="archive">
-            <thead class="thead-light " >
+{{--        <table class=" container rounded table border mt-4" id="archive">--}}
+{{--            <thead class="thead-light " >--}}
+{{--            <tr>--}}
+{{--                <th scope="col">No</th>--}}
+{{--                <th scope="col">License Plate</th>--}}
+{{--                <th scope="col">Date</th>--}}
+{{--                <th scope="col">Reason</th>--}}
+{{--                <th></th>--}}
+{{--            </tr>--}}
+{{--            </thead>--}}
+
+{{--            @foreach($blacklists as $black)--}}
+{{--                <tr>--}}
+{{--                    <td>{{ $loop->iteration }}</td>--}}
+{{--                    <td>{{ $black->lp }}</td>--}}
+{{--                    <td>{{ $black->timestamp }}</td>--}}
+{{--                    <td>{{ $black->reason }}</td>--}}
+{{--                </tr>--}}
+
+{{--            @endforeach--}}
+
+{{--            <tbody>--}}
+
+
+{{--            </tbody>--}}
+{{--        </table>--}}
+
+    <div class=" rounded  container border p-3" style="margin-top:10px;background-color:white;box-shadow: 1px 1px lightblue;">
+        <span class="badge badge-danger badge-pill">Blacklisted vehicles</span>
+        <table  class="table" style="margin-top: 5px;">
+            <thead>
             <tr>
-                <th scope="col">No</th>
-                <th scope="col">License Plate</th>
-                <th scope="col">Date</th>
-                <th scope="col">Reason</th>
+                <th style="font-size: 14px;" scope="col">No</th>
+                <th style="font-size: 14px;" scope="col">License Plate</th>
+                <th style="font-size: 14px;" scope="col">Date</th>
+                <th style="font-size: 14px;" scope="col">Reason</th>
                 <th></th>
             </tr>
             </thead>
 
             @foreach($blacklists as $black)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $black->lp }}</td>
-                    <td>{{ $black->timestamp }}</td>
-                    <td>{{ $black->reason }}</td>
+                    <td style="font-size: 14px;">{{ $loop->iteration }}</td>
+                    <td style="font-size: 14px;">{{ $black->lp }}</td>
+                    <td style="font-size: 14px;">{{ $black->timestamp }}</td>
+                    <td style="font-size: 14px;">{{ $black->reason }}</td>
                 </tr>
 
             @endforeach
@@ -114,7 +143,17 @@
 
 
             </tbody>
+
+
         </table>
+
+
+    </div>
+
+
+
+
+
 
     <div class="container" style="height: 200px;">
 
